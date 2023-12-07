@@ -99,7 +99,7 @@ function setupVideo(stream, peer) {
 }
 
 function preload() {
-  font_nikumaru = loadFont('/fonts/07にくまるフォント.otf');
+  font_nikumaru = loadFont('./fonts/07にくまるフォント.otf');
 }
 
 function setup() {
