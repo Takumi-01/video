@@ -26,9 +26,9 @@ function catchBallInit() {
   ballManager = new BallManager(() => {
     catchEnd();
   });
-  ballImg = [loadImage('./video/image/ball.png'), loadImage('./video/image/nuigurumi_bear.png'), loadImage('./video/image/bakudan.png')];
+  ballImg = [loadImage('/image/ball.png'), loadImage('/image/nuigurumi_bear.png'), loadImage('/image/bakudan.png')];
   //ballImg[0] = loadImage('/image/sports_soft_tennis_ball.png');
-  failedBallImg = [undefined, loadImage('./video/image/nuigurumi_bear_boroboro.png'), loadImage('./video/image/bakuhatsu.png')];
+  failedBallImg = [undefined, loadImage('/image/nuigurumi_bear_boroboro.png'), loadImage('/image/bakuhatsu.png')];
 }
 /**
  * キャッチボールスタート
