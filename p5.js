@@ -202,9 +202,9 @@ function draw() {
   if (highFiveSelected !== 'none') {
     HighFive();
   }
-  // if (isCatchBall) {
-  //   catchBallUpdate();
-  // }
+  if (isCatchBall) {
+    catchBallUpdate();
+  }
   animation.update();
 }
 
