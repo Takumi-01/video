@@ -1,4 +1,4 @@
-//let isCatchBall = false;
+let isCatchBall = false;
 let ballManager;
 let ballImg;
 let failedBallImg;
