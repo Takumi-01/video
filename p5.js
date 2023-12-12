@@ -11,10 +11,10 @@ let hideCapture = null;
 let wasHandResults = false;
 let blackimg;
 let handImgs;
-let VideONImg = '/image/VideON green.png';
-let VideOFFImg = '/image/VideOFF red.png';
-let MikeONImg = '/image/MikeON green.png';
-let MikeOFFImg = '/image/MikeOFF red.png';
+let VideONImg = 'image/VideON green.png';
+let VideOFFImg = 'image/VideOFF red.png';
+let MikeONImg = 'image/MikeON green.png';
+let MikeOFFImg = 'image/MikeOFF red.png';
 let font_nikumaru;
 let mathf;
 let deltaTime = 0;
@@ -120,8 +120,8 @@ function setup() {
   };
   textFont(font_nikumaru);
 
-  blackimg = loadImage('/image/nekocan.png');
-  handImgs = [loadImage('/image/handLef.png'), loadImage('/image/handRig.png')];
+  blackimg = loadImage('image/nekocan.png');
+  handImgs = [loadImage('image/handLef.png'), loadImage('image/handRig.png')];
   startRegularSend();
   console.log('complete setup');
 }
