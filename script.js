@@ -20,6 +20,7 @@ let highFiveSelected;
 let catchUserTypes = ['ランダム', '指さし'];
 let flyingTypes = ['直線', '曲線'];
 let ballTypes = ['ボール', "くまさん", "ボム"];
+let cardUserTypes = ['機能なし','機能あり'];
 $(function () {
 
   let peer = null;
@@ -85,6 +86,21 @@ $(function () {
     }
   });
 
+  //ババ抜き
+  let cardUserSelect = $('#cardUserSelect');
+  let cardUserTypesLen = cardUserTypes.length;
+  for (let i = 0; i < cardUserTypesLen; i++) {
+    let option = $('<option>');
+    option.text(cardUserTypes[i]);
+    cardUserSelect.append(option);
+  }
+  cardUserSelect.on('change', () => {
+    let changed = cardManager.setOldMaidSelectMode(cardUserSelect.val());
+    if (changed) {
+      Send(OLDMAID, { mode: CARDSELECT, state: cardManager.selectMode });
+    }
+  });
+  
   //初めて利用する人にカメラ許可ダイアログを出すためのgetUsrMedia
   navigator.mediaDevices.getUserMedia({ audio: true, video: true })
     .then(function (stream) {

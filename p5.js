@@ -37,6 +37,7 @@ const HIGHSELECT = 'High Touch Select';
 const DYNAMICEFFECT = 'Dynamic effect';
 const CATCHBALL = 'Catch Ball';
 const DRAWHANDSDEBUG = 'Draw hands on display';
+const OLDMAID = 'Old Maid';
 const START = 'Start';
 const END = 'END';
 
