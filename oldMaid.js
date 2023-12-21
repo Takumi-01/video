@@ -83,8 +83,8 @@ class CardManager {
   //   }
   // }
 }
-
-class Card extends obj{
+//objでエラーが出る
+class Card extends Obj{
   constructor(pos, from){
     super(pos, cardSize);
     this.target;
