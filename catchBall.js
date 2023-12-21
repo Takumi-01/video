@@ -49,7 +49,7 @@ function catchBallUpdate() {
   stroke(255, 255, 0, 255);
   strokeWeight(2);
   noFill();
-  rect(mfro.pos.x, from.pos.y, from.size.x, from.size.y);
+  rect(from.pos.x, from.pos.y, from.size.x, from.size.y);
 
   switch (manager.ballMode) {
     case BALLMODE_TRACKING:
