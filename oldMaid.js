@@ -75,6 +75,20 @@ class CardManager {
   createCard(video) {
     this.card = new Card(video.pos.copy(), video);
   }
+
+  // setOldMaidSelectMode(mode) {
+  //   let isCanChange = getCanChange();
+  //   if (isCanChange) {
+  //     this.selectMode = mode;
+  //     $('#cardUserSelect').val(mode);
+  //     let index = ballTypes.indexOf(this.selectMode);
+  //     if (this.card) this.setBallImgIndex(index);
+  //   } else {
+  //     $('#cardUserSelect').val(this.selectMode);
+  //   }
+  //   return isCanChange;
+  // }
+
   // getNext(){
   //   let next;
   //   if(isRound){

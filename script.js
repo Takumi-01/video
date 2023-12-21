@@ -94,11 +94,16 @@ $(function () {
     option.text(cardUserTypes[i]);
     cardUserSelect.append(option);
   }
+  // cardUserSelect.on('change', () => {
+  //   //修正予定
+  //   let changed = cardManager.setOldMaidSelectMode(cardUserSelect.val());
+  //   if (changed) {
+  //     Send(OLDMAID, { mode: CARDSELECT, state: cardManager.selectMode });
+  //   }
+  // });
   cardUserSelect.on('change', () => {
-    let changed = cardManager.setOldMaidSelectMode(cardUserSelect.val());
-    if (changed) {
-      Send(OLDMAID, { mode: CARDSELECT, state: cardManager.selectMode });
-    }
+    cardUserSelected = cardUserSelect.val();
+    Send(OLDMAID, cardUserSelected);
   });
   
   //初めて利用する人にカメラ許可ダイアログを出すためのgetUsrMedia
