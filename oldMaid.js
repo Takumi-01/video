@@ -16,8 +16,8 @@ function oldMaidInit(){
 }
 
 function oldMaidStart(){
-    isOldMaid = true;
-    cardManager.start();
+  isOldMaid = true;
+  cardManager.start();
 }
 //update
 function oldMaidUpdate(){
@@ -59,18 +59,18 @@ class CardManager {
     this.isUserHost = true;
     this.isHost = true;
     this.createCard(localVideo);
-    switch (this.selectMode) {
-      case catchUserTypes[0]:
-      //配列の早いコピーらしい
-      //https://qiita.com/takahiro_itazuri/items/882d019f1d8215d1cb67#comment-1b338078985aea9f600a
-      this.member = [...others];
-      this.setTarget(this.getNext());
-      break;
-    case cardUserTypes[1]:
-      let fAndT = this.card.getFromTargetID();
-      Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
-      break;
-    }
+    // switch (this.selectMode) {
+    //   case catchUserTypes[0]:
+    //   //配列の早いコピーらしい
+    //   //https://qiita.com/takahiro_itazuri/items/882d019f1d8215d1cb67#comment-1b338078985aea9f600a
+    //   this.member = [...others];
+    //   this.setTarget(this.getNext());
+    //   break;
+    // case cardUserTypes[1]:
+    //   let fAndT = this.card.getFromTargetID();
+    //   Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
+    //   break;
+    // }
   }
   createCard(video) {
     this.card = new Card(video.pos.copy(), video);
@@ -97,7 +97,6 @@ class CardManager {
   //   }
   // }
 }
-//objでエラーが出る
 class Card extends Obj{
   constructor(pos, from){
     super(pos, cardSize);

@@ -379,6 +379,9 @@ function ReceivedMessage(peerID, msg) {
     case DRAWHANDSDEBUG:
       ReceiveDrawHands(msg.data);
       break;
+    case OLDMAID:
+      ReceiveStartOld(video, msg.data);
+      break;
     default:
       console.warn('not format message:');
       console.warn(msg);
@@ -476,6 +479,10 @@ function ReceiveDynamicEffect(enabled) {
 function ReceiveStartCatch(video, fromAndTo) {
   receiveBallStatus(fromAndTo);//→ catchBall.js
 }
+
+// function ReceiveStartOld(video, fromAndTo){
+
+// }
 
 function ReceiveDrawHands(checked) {
   isDrawRect = checked;
