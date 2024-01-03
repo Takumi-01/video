@@ -21,8 +21,8 @@ function oldMaidStart(){
 }
 //update
 function oldMaidUpdate(){
-  let manager = ballManager;
-  let ball = manager.ball;
+  let manager = cardManager;
+  let card = manager.card;
 
   //順番者の協調
   stroke(255, 255, 0, 255);
