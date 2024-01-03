@@ -9,7 +9,7 @@ let isRound = true;
 
 //setup
 function oldMaidInit(){
-    oldMaidManager = new CardManager(() => {
+    cardManager = new CardManager(() => {
         oldMaidEnd();
       });
     cardImg = [loadImage('img/spadeA.png')]
