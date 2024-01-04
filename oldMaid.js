@@ -7,19 +7,19 @@ const CARDSELECT = 'CARDSELECT';
 let isRound = true;
 
 
-//setup
+//ババ抜きsetup
 function oldMaidInit(){
-    cardManager = new CardManager(() => {
-        oldMaidEnd();
-      });
-    cardImg = [loadImage('img/spadeA.png')]
+  cardManager = new CardManager(() => {
+    oldMaidEnd();
+  });
+  cardImg = [loadImage('img/spadeA.png')]
 }
-
+//ババ抜きstart
 function oldMaidStart(){
   isOldMaid = true;
   cardManager.start();
 }
-//update
+//ババ抜きupdate
 function oldMaidUpdate(){
   let manager = cardManager;
   let card = manager.card;
@@ -42,7 +42,7 @@ function oldMaidEnd(){
   ballManager.isHost = false;
   ballManager.isUserHost = false;
   ballManager.card = undefined;
-  isCatchBall = false;
+  isOldMaid = false;
 }
 
 class CardManager {
