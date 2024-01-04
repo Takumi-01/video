@@ -21,6 +21,7 @@ let catchUserTypes = ['ランダム', '指さし'];
 let flyingTypes = ['直線', '曲線'];
 let ballTypes = ['ボール', "くまさん", "ボム"];
 let cardUserTypes = ['機能なし','機能あり'];
+let cardUserSelected;
 $(function () {
 
   let peer = null;
