@@ -480,9 +480,10 @@ function ReceiveStartCatch(video, fromAndTo) {
   receiveBallStatus(fromAndTo);//→ catchBall.js
 }
 
-// function ReceiveStartOld(video, fromAndTo){
-
-// }
+function ReceiveStartOld(video, select){
+  cardUserSelected = select;
+  $("#cardUserSelect#").val(select);
+}
 
 function ReceiveDrawHands(checked) {
   isDrawRect = checked;
