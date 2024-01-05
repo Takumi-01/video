@@ -29,6 +29,7 @@ function oldMaidUpdate(){
   strokeWeight(2);
   noFill();
 
+  card.update();
   function trackingMode() {
     let handsPos = undefined;
 
