@@ -379,9 +379,9 @@ function ReceivedMessage(peerID, msg) {
     case DRAWHANDSDEBUG:
       ReceiveDrawHands(msg.data);
       break;
-    // case OLDMAID:
-    //   ReceiveStartOld(video, msg.data);
-    //   break;
+    case OLDMAID:
+      ReceiveStartOld(video, msg.data);
+      break;
     default:
       console.warn('not format message:');
       console.warn(msg);
@@ -482,7 +482,7 @@ function ReceiveStartCatch(video, fromAndTo) {
 
 function ReceiveStartOld(video, select){
   cardUserSelected = select;
-  $("#cardUserSelect#").val(select);
+  $("#cardUserSelect").val(select);
 }
 
 function ReceiveDrawHands(checked) {
