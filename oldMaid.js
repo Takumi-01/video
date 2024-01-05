@@ -97,6 +97,7 @@ class CardManager {
   //   }
   // }
 }
+
 class Card extends Obj{
   constructor(pos, from){
     super(pos, cardSize);
@@ -118,8 +119,9 @@ class Card extends Obj{
       rect(this.target.pos.x, this.target.pos.y, this.target.size.x, this.target.size.y);
     }
 
-    //
+    //カード表示
     push();
+    translate(this.pos.x, this.pos.y);
     image(cardImg, 0, 0, this.size, this.size);
     pop();
   }
