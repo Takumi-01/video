@@ -29,7 +29,7 @@ function oldMaidUpdate(){
   strokeWeight(2);
   noFill();
 
-  card.update();
+  trackingMode();
 
   function trackingMode() {
     let minMaxes = from.minMaxes;
@@ -42,9 +42,9 @@ function oldMaidUpdate(){
       }
     }
     if (!handsPos || handsPos.y < 0.3) return;
-    switch (cardManager.selectMode){
+    // switch (cardManager.selectMode){
 
-    }
+    // }
     if (!ball.target) return;
     //投げた判定の高さ
     push(); {
