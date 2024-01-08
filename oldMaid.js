@@ -30,12 +30,41 @@ function oldMaidUpdate(){
   noFill();
 
   card.update();
+
   function trackingMode() {
+    let minMaxes = from.minMaxes;
     let handsPos = undefined;
 
-    switch (cardManager.selectMode){
-      
+    for (let i = 0; i < 2; i++) {
+      if (minMaxes[i]) {
+        handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
+        break;
+      }
     }
+    if (!handsPos || handsPos.y < 0.3) return;
+    switch (cardManager.selectMode){
+
+    }
+    if (!ball.target) return;
+    //投げた判定の高さ
+    push(); {
+      stroke(0, 255, 0);
+      strokeWeight(max(1, from.size.x * 0.01));
+      drawingContext.setLineDash([from.size.x * 0.02, from.size.x * 0.05]);
+      let y = from.leftUpPos.y + from.size.y * throwThreshold;
+      line(from.leftUpPos.x, y, from.leftUpPos.x + from.size.x, y);
+    } pop();
+    card.update();
+    // if (handsPos) {
+    //   let leftUp = from.leftUpPos;
+    //   let x = leftUp.x + handsPos.x * from.size.x;
+    //   let y = leftUp.y + handsPos.y * from.size.y;
+    //   card.setPos(x, y);
+    //   card.setFromPos(x, y);
+    //   if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
+    //     ballThrowed();
+    //   }
+    // }
   }
 }
 
