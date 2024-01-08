@@ -55,16 +55,16 @@ function oldMaidUpdate(){
       line(from.leftUpPos.x, y, from.leftUpPos.x + from.size.x, y);
     } pop();
     card.update();
-    // if (handsPos) {
-    //   let leftUp = from.leftUpPos;
-    //   let x = leftUp.x + handsPos.x * from.size.x;
-    //   let y = leftUp.y + handsPos.y * from.size.y;
-    //   card.setPos(x, y);
-    //   card.setFromPos(x, y);
+    if (handsPos) {
+      let leftUp = from.leftUpPos;
+      let x = leftUp.x + handsPos.x * from.size.x;
+      let y = leftUp.y + handsPos.y * from.size.y;
+      card.setPos(x, y);
+      card.setFromPos(x, y);
     //   if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
     //     ballThrowed();
     //   }
-    // }
+     }
   }
 }
 
@@ -134,6 +134,7 @@ class Card extends Obj{
     this.target;
     this.from = from;
     this.pos = pos ; //位置
+    this.fromPos = createVector();
     this.amt = 0; //
     this.width ; //横幅
     this.height ; //縦幅
@@ -170,6 +171,10 @@ class Card extends Obj{
     this.prevPos = this.pos.copy();
     this.pos.x = x;
     this.pos.y = y;
+  }
+  setFromPos(x, y) {
+    this.fromPos.x = x;
+    this.fromPos.y = y;
   }
   setSize(x, y){
     this.width = x;
