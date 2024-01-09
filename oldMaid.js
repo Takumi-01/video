@@ -32,15 +32,15 @@ function oldMaidUpdate(){
   trackingMode();
 
   function trackingMode() {
-    let minMaxes = from.minMaxes;
+    //let minMaxes = from.minMaxes;
     let handsPos = undefined;
 
-    for (let i = 0; i < 2; i++) {
-      if (minMaxes[i]) {
-        handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
-        break;
-      }
-    }
+    // for (let i = 0; i < 2; i++) {
+    //   if (minMaxes[i]) {
+    //     handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
+    //     break;
+    //   }
+    // }
     if (!handsPos || handsPos.y < 0.3) return;
     // switch (cardManager.selectMode){
 
