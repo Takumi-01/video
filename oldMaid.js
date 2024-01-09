@@ -127,6 +127,9 @@ class CardManager {
   //     }
   //   }
   // }
+  setFrom(from) {
+    this.card.setFrom(from);
+  }
 }
 
 class Card extends Obj{
