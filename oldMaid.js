@@ -97,8 +97,8 @@ class CardManager {
     //   this.setTarget(this.getNext());
     //   break;
     // case cardUserTypes[1]:
-    //   let fAndT = this.card.getFromTargetID();
-    //   Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
+    let fAndT = this.card.getFromTargetID();
+    Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
     //   break;
     // }
   }
