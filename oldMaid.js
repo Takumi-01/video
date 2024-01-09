@@ -133,7 +133,6 @@ class Card extends Obj{
     super(pos, cardSize);
     this.target;
     this.from = from;
-    this.pos = pos ; //位置
     this.fromPos = createVector();
     this.amt = 0; //
     this.width ; //横幅
