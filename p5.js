@@ -89,6 +89,7 @@ function setupVideo(stream, peer) {
     if (log) console.log("camera", camera);
     HighFiveInit();
     catchBallInit();
+    oldMaidInit();
     setTimeout(() => { hands.send({ image: capture.elt }); },0);//タスクキューに追加して処理を後回しにする
   }
   localVideo.capture.elt.srcObject = stream;
@@ -205,6 +206,10 @@ function draw() {
   }
   if (isCatchBall) {
     catchBallUpdate();
+  }
+  if(cardUserSelected !== 'none'){
+    oldMaidStart();
+    oldMaidUpdate();
   }
   animation.update();
 }

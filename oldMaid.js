@@ -131,10 +131,10 @@ class CardManager {
 class Card extends Obj{
   constructor(pos, from){
     super(pos, cardSize);
-    this.target;
+    this.target;//相手
     this.from = from;
     this.fromPos = createVector();
-    this.amt = 0; //
+    this.amt = 0; 
     this.width ; //横幅
     this.height ; //縦幅
 
@@ -175,10 +175,10 @@ class Card extends Obj{
     this.fromPos.x = x;
     this.fromPos.y = y;
   }
-  setSize(x, y){
-    this.width = x;
-    this.height = y;
-  }
+  // setSize(x, y){
+  //   this.width = x;
+  //   this.height = y;
+  // }
   getFromTargetID() {
     let from = this.from ? this.from.ID : undefined;
     let target = this.target ? this.target.ID : undefined;
