@@ -207,12 +207,12 @@ function draw() {
   if (isCatchBall) {
     catchBallUpdate();
   }
-  // if(cardUserSelected !== 'none'){
-  //   oldMaidStart();
-  // }
-  if(isOldMaid){
-    oldMaidUpdate();
+  if(cardUserSelected !== 'none'){
+    oldMaidStart();
   }
+  // if(isOldMaid){
+  //   oldMaidUpdate();
+  // }
   animation.update();
 }
 
