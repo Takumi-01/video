@@ -46,7 +46,7 @@ function oldMaidUpdate(){
     // switch (cardManager.selectMode){
 
     // }
-    if (!ball.target) return;
+    //if (!ball.target) return;
     //投げた判定の高さ
     push(); {
       stroke(0, 255, 0);
