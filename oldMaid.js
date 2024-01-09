@@ -48,13 +48,13 @@ function oldMaidUpdate(){
     // }
     //if (!ball.target) return;
     //投げた判定の高さ
-    push(); {
-      stroke(0, 255, 0);
-      strokeWeight(max(1, from.size.x * 0.01));
-      drawingContext.setLineDash([from.size.x * 0.02, from.size.x * 0.05]);
-      let y = from.leftUpPos.y + from.size.y * throwThreshold;
-      line(from.leftUpPos.x, y, from.leftUpPos.x + from.size.x, y);
-    } pop();
+    // push(); {
+    //   stroke(0, 255, 0);
+    //   strokeWeight(max(1, from.size.x * 0.01));
+    //   drawingContext.setLineDash([from.size.x * 0.02, from.size.x * 0.05]);
+    //   let y = from.leftUpPos.y + from.size.y * throwThreshold;
+    //   line(from.leftUpPos.x, y, from.leftUpPos.x + from.size.x, y);
+    // } pop();
     card.update();
     if (handsPos) {
       let leftUp = from.leftUpPos;
@@ -153,7 +153,7 @@ class Card extends Obj{
     //カード表示
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg, 0, 0, this.size, this.size);
+    image(cardImg[0], 0, 0, this.size, this.size);
     pop();
   }
   setTarget(target) {
