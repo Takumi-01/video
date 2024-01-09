@@ -208,7 +208,7 @@ function draw() {
     catchBallUpdate();
   }
   if(cardUserSelected !== 'none'){
-    oldMaidStart();
+    oldMaidUpdate();
   }
   // if(isOldMaid){
   //   oldMaidUpdate();
