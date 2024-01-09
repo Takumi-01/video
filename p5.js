@@ -209,6 +209,9 @@ function draw() {
   }
   if(cardUserSelected !== 'none'){
     oldMaidStart();
+    
+  }
+  if(isOldMaid){
     oldMaidUpdate();
   }
   animation.update();
