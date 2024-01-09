@@ -23,6 +23,7 @@ function oldMaidStart(){
 function oldMaidUpdate(){
   let manager = cardManager;
   let card = manager.card;
+  let from = card.from;
 
   //順番者の協調
   stroke(255, 255, 0, 255);
@@ -32,15 +33,15 @@ function oldMaidUpdate(){
   trackingMode();
 
   function trackingMode() {
-    //let minMaxes = from.minMaxes;
+    let minMaxes = from.minMaxes;
     let handsPos = undefined;
 
-    // for (let i = 0; i < 2; i++) {
-    //   if (minMaxes[i]) {
-    //     handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
-    //     break;
-    //   }
-    // }
+    for (let i = 0; i < 2; i++) {
+      if (minMaxes[i]) {
+        handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
+        break;
+      }
+    }
     if (!handsPos || handsPos.y < 0.3) return;
     // switch (cardManager.selectMode){
 
