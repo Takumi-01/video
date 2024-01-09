@@ -60,7 +60,7 @@ function oldMaidUpdate(){
       let leftUp = from.leftUpPos;
       let x = leftUp.x + handsPos.x * from.size.x;
       let y = leftUp.y + handsPos.y * from.size.y;
-      card.setPos(handsPos.x, handsPos.y);
+      card.setPos(x, y);
       card.setFromPos(x, y);
     //   if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
     //     ballThrowed();
