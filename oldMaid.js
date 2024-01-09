@@ -153,7 +153,7 @@ class Card extends Obj{
     //カード表示
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[0], 0, 0, this.size, this.size);
+    image(cardImg[0], 0, 0, this.size, 2 * this.size);
     pop();
   }
   setTarget(target) {
