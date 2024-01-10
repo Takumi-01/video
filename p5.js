@@ -208,11 +208,11 @@ function draw() {
     catchBallUpdate();
   }
   if(cardUserSelected !== 'none'){
-    oldMaidUpdate();
+    if(isOldMaid){
+      oldMaidUpdate();
+    }
   }
-  // if(isOldMaid){
-  //   oldMaidUpdate();
-  // }
+  
   animation.update();
 }
 
