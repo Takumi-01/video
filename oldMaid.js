@@ -201,8 +201,12 @@ class Card extends Obj{
     
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[0]], 0, 0, this.size, 2 / this.size);
+    image(cardImg[0], 0, 0, this.size, 2 / this.size);
     pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[0]], 0, 0, this.size, 2 / this.size);
+    // pop();
     // push();
     // translate(this.pos.x, this.pos.y);
     // image(cardImg[randoms[1]], 10, 0, this.size, 2 / this.size);
