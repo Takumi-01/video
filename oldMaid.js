@@ -15,7 +15,6 @@ function oldMaidInit(){
   for(let i = 1; i <= 13; i++ ){
     cardImg = [loadImage('img/spade'+i+'.png'),loadImage('img/clover'+i+'.png'),loadImage('img/dia'+i+'.png'),loadImage('img/heart'+i+'.png')]
   }
-  
 }
 //ババ抜きstart
 function oldMaidStart(){

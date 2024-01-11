@@ -398,6 +398,9 @@ function ChangeIsCatch() {
 function ChangeIsCard() {
   oldMaidStart();
 }
+function EndIsCard(){
+  cardManager.finish();
+}
 
 function AddDummy() {
   let pos = localVideo.pos.copy().add(createVector(localVideo.size.x / 2, localVideo.size.y / 2));
