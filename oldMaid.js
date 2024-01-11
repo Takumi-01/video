@@ -191,7 +191,7 @@ class Card extends Obj{
     }
 
     //カード表示
-    for(let i = 0; i < 5; i++){
+    for(var i = 0; i < 5; i++){
       var rnd = intRandom(min, max);
       if(!randoms.includes(rnd)){
         randoms.push(rnd);
