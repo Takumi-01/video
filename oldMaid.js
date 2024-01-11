@@ -132,6 +132,11 @@ class CardManager {
   setFrom(from) {
     this.card.setFrom(from);
   }
+  finish() {
+    this.member = [];
+    this.endFunc();
+    Send(OLDMAID, { mode: END });
+  }
 }
 
 class Card extends Obj{
