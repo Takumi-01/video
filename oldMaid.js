@@ -11,7 +11,7 @@ let randoms = [];
 let Cardmin = 0;
 let Cardmax = cardImg.length;
 
-
+    
 //ババ抜きsetup
 function oldMaidInit(){
   cardManager = new CardManager(() => {
@@ -49,7 +49,15 @@ function oldMaidInit(){
 //ババ抜きstart
 function oldMaidStart(){
   isOldMaid = true;
+  let i;
+  for(i = 0; i < 5; i++){
+    let rnd = intRandom(Cardmin, Cardmax);
+    if(!randoms.includes(rnd)){
+      randoms.push(rnd);
+    }
+  }
   cardManager.start();
+  
 }
 //ババ抜きupdate
 function oldMaidUpdate(){
@@ -191,13 +199,7 @@ class Card extends Obj{
     }
 
     //カード表示
-    let i;
-    for(i = 0; i < 5; i++){
-      let rnd = intRandom(Cardmin, Cardmax);
-      if(!randoms.includes(rnd)){
-        randoms.push(rnd);
-      }
-    }
+    
     
     push();
     translate(this.pos.x, this.pos.y);
