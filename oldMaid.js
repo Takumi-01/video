@@ -198,27 +198,27 @@ class Card extends Obj{
         randoms.push(rnd);
       }
     }
+    
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[0]], -20, 0, this.size, 2 / this.size);
+    image(cardImg[randoms[0]], 0, 0, this.size, 2 / this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[1]], -10, 0, this.size, 2 / this.size);
+    image(cardImg[randoms[1]], 10, 0, this.size, 2 / this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[2]], 0, 0, this.size, 2 / this.size);
+    image(cardImg[randoms[2]], 20, 0, this.size, 2 / this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[3]], 10, 0, this.size, 2 / this.size);
+    image(cardImg[randoms[3]], 30, 0, this.size, 2 / this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[4]], 20, 0, this.size, 2 / this.size);
+    image(cardImg[randoms[4]], 40, 0, this.size, 2 / this.size);
     pop();
-
   }
   setTarget(target) {
     this.amt = 0;
