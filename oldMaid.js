@@ -1,10 +1,15 @@
 let isOldMaid = false;
 let cardManager;
-let cardImg;
+let cardImg = [];
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 
 let isRound = true;
+
+
+var randoms = [];
+var min = 0;
+var max = cardImg.length;
 
 
 //ババ抜きsetup
@@ -186,10 +191,21 @@ class Card extends Obj{
     }
 
     //カード表示
-    push();
-    translate(this.pos.x, this.pos.y);
-    image(cardImg[0], 0, 0, this.size, 2 * this.size);
-    pop();
+    for(let i = 0; i < 5; i++){
+      var rnd = intRandom(min, max);
+      if(!randoms.includes(rnd)){
+        randoms.push(rnd);
+        push()
+        translate(this.pos.x, this.pos.y);
+        image(cardImg[rnd], i, 0, this.size, 2 * this.size);
+        pop();
+      }
+    }
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[0], 0, 0, this.size, 2 * this.size);
+    // pop();
+
   }
   setTarget(target) {
     this.amt = 0;
@@ -220,4 +236,8 @@ class Card extends Obj{
     let target = this.target ? this.target.ID : undefined;
     return { from: from, target: target };
   }
+  
+}
+function intRandom(min, max){
+  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
