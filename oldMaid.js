@@ -196,7 +196,7 @@ class Card extends Obj{
       let rnd = intRandom(Cardmin, Cardmax);
       if(!randoms.includes(rnd)){
         randoms.push(rnd);
-        push()
+        push();
         translate(this.pos.x, this.pos.y);
         image(cardImg[0], i, 0, this.size, 2 * this.size);
         pop();
