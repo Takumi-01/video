@@ -7,12 +7,15 @@ const CARDSELECT = 'CARDSELECT';
 let isRound = true;
 
 
-let randoms = [];
+let randoms = new Array(52);
 let Cardmin = 0;
-let Cardmax = cardImg.length;
+let Cardmax = 5;
 
     
 //ババ抜きsetup
+function intRandom(min, max){
+  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+}
 function oldMaidInit(){
   cardManager = new CardManager(() => {
     oldMaidEnd();
@@ -201,25 +204,45 @@ class Card extends Obj{
     //カード表示
     
     
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[0]], -80, 0, this.size, 2 * this.size);
+    // pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[1]], -40, 0, this.size, 2 * this.size);
+    // pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[2]], 0, 0, this.size, 2 * this.size);
+    // pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[3]], 40, 0, this.size, 2 * this.size);
+    // pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // image(cardImg[randoms[4]], 80, 0, this.size, 2 * this.size);
+    // pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[0]], -80, 0, this.size, 2 * this.size);
+    image(cardImg[0], -80, 0, this.size, 2 * this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[1]], -40, 0, this.size, 2 * this.size);
+    image(cardImg[1], -40, 0, this.size, 2 * this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[2]], 0, 0, this.size, 2 * this.size);
+    image(cardImg[2], 0, 0, this.size, 2 * this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[3]], 40, 0, this.size, 2 * this.size);
+    image(cardImg[3], 40, 0, this.size, 2 * this.size);
     pop();
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[randoms[4]], 80, 0, this.size, 2 * this.size);
+    image(cardImg[4], 80, 0, this.size, 2 * this.size);
     pop();
   }
   setTarget(target) {
@@ -253,6 +276,4 @@ class Card extends Obj{
   }
   
 }
-function intRandom(min, max){
-  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
-}
+
