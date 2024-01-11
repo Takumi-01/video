@@ -1,6 +1,6 @@
 let isOldMaid = false;
 let cardManager;
-let cardImg;
+let cardImg = [];
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 
