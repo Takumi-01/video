@@ -8,8 +8,8 @@ let isRound = true;
 
 
 let randoms = [];
-let min = 0;
-let max = cardImg.length;
+let Cardmin = 0;
+let Cardmax = cardImg.length;
 
 
 //ババ抜きsetup
@@ -193,7 +193,7 @@ class Card extends Obj{
     //カード表示
     let i;
     for(i = 0; i < 5; i++){
-      let rnd = intRandom(min, max);
+      let rnd = intRandom(Cardmin, Cardmax);
       if(!randoms.includes(rnd)){
         randoms.push(rnd);
         push()
