@@ -1,6 +1,6 @@
 let isOldMaid = false;
 let cardManager;
-let cardImg = [];
+let cardImg;
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 
@@ -12,9 +12,34 @@ function oldMaidInit(){
   cardManager = new CardManager(() => {
     oldMaidEnd();
   });
-  for(let i = 1; i <= 13; i++ ){
-    cardImg.push = [loadImage('img/spade'+i+'.png'),loadImage('img/clover'+i+'.png'),loadImage('img/dia'+i+'.png'),loadImage('img/heart'+i+'.png')]
-  }
+    cardImg = [loadImage('img/spade1.png'),loadImage('img/spade2.png'),
+               loadImage('img/spade3.png'),loadImage('img/spade4.png'),
+               loadImage('img/spade5.png'),loadImage('img/spade6.png'),
+               loadImage('img/spade7.png'),loadImage('img/spade8.png'),
+               loadImage('img/spade9.png'),loadImage('img/spade10.png'),
+               loadImage('img/spade11.png'),loadImage('img/spade12.png'),
+               loadImage('img/spade13.png'),
+               loadImage('img/clover1.png'),loadImage('img/clover2.png'),
+               loadImage('img/clover3.png'),loadImage('img/clover4.png'),
+               loadImage('img/clover5.png'),loadImage('img/clover6.png'),
+               loadImage('img/clover7.png'),loadImage('img/clover8.png'),
+               loadImage('img/clover9.png'),loadImage('img/clover10.png'),
+               loadImage('img/clover11.png'),loadImage('img/clover12.png'),
+               loadImage('img/clover13.png'),
+               loadImage('img/dia1.png'),loadImage('img/dia2.png'),
+               loadImage('img/dia3.png'),loadImage('img/dia4.png'),
+               loadImage('img/dia5.png'),loadImage('img/dia6.png'),
+               loadImage('img/dia7.png'),loadImage('img/dia8.png'),
+               loadImage('img/dia9.png'),loadImage('img/dia10.png'),
+               loadImage('img/dia11.png'),loadImage('img/dia12.png'),
+               loadImage('img/dia13.png'),
+               loadImage('img/heart1.png'),loadImage('img/heart2.png'),
+               loadImage('img/heart3.png'),loadImage('img/heart4.png'),
+               loadImage('img/heart5.png'),loadImage('img/heart6.png'),
+               loadImage('img/heart7.png'),loadImage('img/heart8.png'),
+               loadImage('img/heart9.png'),loadImage('img/heart10.png'),
+               loadImage('img/heart11.png'),loadImage('img/heart12.png'),
+               loadImage('img/heart13.png')]
 }
 //ババ抜きstart
 function oldMaidStart(){
