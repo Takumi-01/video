@@ -198,7 +198,7 @@ class Card extends Obj{
         randoms.push(rnd);
         push()
         translate(this.pos.x, this.pos.y);
-        image(cardImg[rnd], i, 0, this.size, 2 * this.size);
+        image(cardImg[0], i, 0, this.size, 2 * this.size);
         pop();
       }
     }
