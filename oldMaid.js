@@ -7,9 +7,9 @@ const CARDSELECT = 'CARDSELECT';
 let isRound = true;
 
 
-var randoms = [];
-var min = 0;
-var max = cardImg.length;
+let randoms = [];
+let min = 0;
+let max = cardImg.length;
 
 
 //ババ抜きsetup
@@ -191,8 +191,9 @@ class Card extends Obj{
     }
 
     //カード表示
-    for(var i = 0; i < 5; i++){
-      var rnd = intRandom(min, max);
+    let i;
+    for(i = 0; i < 5; i++){
+      let rnd = intRandom(min, max);
       if(!randoms.includes(rnd)){
         randoms.push(rnd);
         push()
