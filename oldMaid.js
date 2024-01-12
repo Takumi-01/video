@@ -7,7 +7,7 @@ const CARDSELECT = 'CARDSELECT';
 let isRound = true;
 
 
-let randoms;
+let randoms = new Array();
 let Cardmin = 0;
 let Cardmax = 10;
 
