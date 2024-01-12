@@ -9,7 +9,7 @@ let isRound = true;
 
 let randoms = new Array();
 let Cardmin = 0;
-let Cardmax = 10;
+let Cardmax = 9;
 
     
 //ババ抜きsetup
@@ -31,11 +31,15 @@ function oldMaidInit(){
 function oldMaidStart(){
   isOldMaid = true;
   let i;
-  for(i = 0; i < 5; i++){
-    let rnd = intRandom(Cardmin, Cardmax);
-    if(!randoms.includes(rnd)){
-      randoms.push(rnd);
+  for(i = Cardmin; i <= Cardmax; i++){
+    while(true){
+      let rnd = intRandom(Cardmin, Cardmax);
+      if(!randoms.includes(rnd)){
+        randoms.push(rnd);
+        break;
+      }
     }
+
   }
   cardManager.start();
   
