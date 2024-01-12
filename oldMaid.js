@@ -205,31 +205,31 @@ class Card extends Obj{
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.rotation+20);
-    image(cardImg[0], 60, -40, this.size, 2 * this.size);
+    image(cardImg[randoms[0]], 60, -40, this.size, 2 * this.size);
     pop();
 
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.rotation-15);
-    image(cardImg[1], -40, 15, this.size, 2 * this.size);
+    image(cardImg[randoms[1]], -40, 15, this.size, 2 * this.size);
     pop();
 
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.rotation);
-    image(cardImg[2], 0, 0, this.size, 2 * this.size);
+    image(cardImg[randoms[2]], 0, 0, this.size, 2 * this.size);
     pop();
 
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.rotation+15);
-    image(cardImg[3], 40, 15, this.size, 2 * this.size);
+    image(cardImg[randoms[3]], 40, 15, this.size, 2 * this.size);
     pop();
 
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.rotation-20);
-    image(cardImg[4], -60, -40, this.size, 2 * this.size);
+    image(cardImg[randoms[4]], -60, -40, this.size, 2 * this.size);
     pop();
   }
   setTarget(target) {
