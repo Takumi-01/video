@@ -185,11 +185,9 @@ class Card extends Obj{
     super(pos, cardSize);
     this.target;//相手
     this.from = from;
+    this.rotation = 0;//角度
     this.fromPos = createVector();
     this.amt = 0; 
-    this.width ; //横幅
-    this.height ; //縦幅
-
 
   }
   update(){
@@ -224,25 +222,35 @@ class Card extends Obj{
     // translate(this.pos.x, this.pos.y);
     // image(cardImg[randoms[4]], 80, 0, this.size, 2 * this.size);
     // pop();
+
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[0], -80, 0, this.size, 2 * this.size);
+    rotate(this.rotation+20);
+    image(cardImg[0], 60, -40, this.size, 2 * this.size);
     pop();
+
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[1], -40, 0, this.size, 2 * this.size);
+    rotate(this.rotation-15);
+    image(cardImg[1], -40, 15, this.size, 2 * this.size);
     pop();
+
     push();
     translate(this.pos.x, this.pos.y);
+    rotate(this.rotation);
     image(cardImg[2], 0, 0, this.size, 2 * this.size);
     pop();
+
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[3], 40, 0, this.size, 2 * this.size);
+    rotate(this.rotation+15);
+    image(cardImg[3], 40, 15, this.size, 2 * this.size);
     pop();
+
     push();
     translate(this.pos.x, this.pos.y);
-    image(cardImg[4], 80, 0, this.size, 2 * this.size);
+    rotate(this.rotation-20);
+    image(cardImg[4], -60, -40, this.size, 2 * this.size);
     pop();
   }
   setTarget(target) {
