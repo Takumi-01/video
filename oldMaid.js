@@ -9,7 +9,7 @@ let isRound = true;
 
 let randoms;
 let Cardmin = 0;
-let Cardmax = 5;
+let Cardmax = 10;
 
     
 //ババ抜きsetup
