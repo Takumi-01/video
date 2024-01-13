@@ -3,30 +3,53 @@ let cardManager;
 let cardImg = [];
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
+const CARD_NEXT = 'NEXTUSER';
+const ROUND = 'ROUND';
 
 let isRound = true;
-
 
 let randoms = new Array();
 let Cardmin = 0;
 let Cardmax = 9;
 
-    
+let player = new Array();
+let opponent = new Array();
+
+let shuffleNum;
+
 //ババ抜きsetup
 function intRandom(min, max){
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
+
+function intShuffle(num){
+  if(num == 0){
+    for(i = 0; i <= Cardmax; i += 2){
+      player.push(randoms[i]);
+      opponent.push(randoms[i+1]);
+    }
+  }else {
+    for(i = 0; i <= 2 / Cardmax; i++){
+      player[i] = randoms[i];
+      opponent[i + 2 / Cardmax] = randoms[i + 2 / Cardmax];
+    }
+  }
+  shuffleNum += 1;
+}
+
 function oldMaidInit(){
+  shuffleNum = 0;
   cardManager = new CardManager(() => {
     oldMaidEnd();
   });
-    cardImg = [loadImage('img/spade1.png'),loadImage('img/spade2.png'),
-               loadImage('img/spade3.png'),loadImage('img/spade4.png'),
-               loadImage('img/spade5.png'),
-               loadImage('img/clover1.png'),loadImage('img/clover2.png'),
-               loadImage('img/clover3.png'),loadImage('img/clover4.png'),
-               loadImage('img/clover5.png')]
+  cardImg = [loadImage('img/spade1.png'),loadImage('img/spade2.png'),
+             loadImage('img/spade3.png'),loadImage('img/spade4.png'),
+             loadImage('img/spade5.png'),
+             loadImage('img/clover1.png'),loadImage('img/clover2.png'),
+             loadImage('img/clover3.png'),loadImage('img/clover4.png'),
+             loadImage('img/clover5.png')]
 }
+
 //ババ抜きstart
 function oldMaidStart(){
   isOldMaid = true;
@@ -39,11 +62,15 @@ function oldMaidStart(){
         break;
       }
     }
-
   }
+  intShuffle(shuffleNum);
+  // for(i = 0; i <= Cardmax; i += 2){
+  //     player.push(randoms[i]);
+  //     opponent.push(randoms[i+1]);
+  // }
   cardManager.start();
-  
 }
+
 //ババ抜きupdate
 function oldMaidUpdate(){
   let manager = cardManager;
@@ -68,38 +95,138 @@ function oldMaidUpdate(){
       }
     }
     if (!handsPos || handsPos.y < 0.3) return;
-    // switch (cardManager.selectMode){
-
-    // }
-    //if (!ball.target) return;
-    //投げた判定の高さ
-    // push(); {
-    //   stroke(0, 255, 0);
-    //   strokeWeight(max(1, from.size.x * 0.01));
-    //   drawingContext.setLineDash([from.size.x * 0.02, from.size.x * 0.05]);
-    //   let y = from.leftUpPos.y + from.size.y * throwThreshold;
-    //   line(from.leftUpPos.x, y, from.leftUpPos.x + from.size.x, y);
-    // } pop();
+    let lineP = getPointingLine(from);
+    if (lineP) {//指さしあり
+      let hitInfo = getCollVideo(from, lineP);
+      push();
+      stroke(0, 255, 0);
+      strokeWeight(max(3, width * 0.003));
+      if (hitInfo) {
+        noFill();
+        line(lineP.start.x, lineP.start.y, hitInfo.hitPos.x, hitInfo.hitPos.y);
+        let hitVideo = hitInfo.video;
+        rect(hitVideo.pos.x, hitVideo.pos.y, hitVideo.size.x, hitVideo.size.y);
+        if (cardManager.isUserHost && hitVideo !== card.target) {
+          cardManager.changeTarget(hitVideo);
+          Send(OLDMAID, { mode: STATE_NEXTUSER, from: undefined, target: hitVideo.ID });
+        }
+      } else {
+        drawingContext.setLineDash([width * 0.01, width * 0.02]);
+        line(lineP.start.x, lineP.start.y, lineP.end.x, lineP.end.y);
+      }
+      pop();
+    }
     card.update();
-    if (handsPos) {
-      let leftUp = from.leftUpPos;
-      let x = leftUp.x + handsPos.x * from.size.x;
-      let y = leftUp.y + handsPos.y * from.size.y;
-      card.setPos(x, y);
-      card.setFromPos(x, y);
-      
+
+    let leftUp = from.leftUpPos;
+    let x = leftUp.x + handsPos.x *from.size.x;
+    let y = leftUp.y + handsPos.y *from.size.y;
+    card.setPos(x,y);
+
+    // if (handsPos) {
+    //   let leftUp = from.leftUpPos;
+    //   let x = leftUp.x + handsPos.x * from.size.x;
+    //   let y = leftUp.y + handsPos.y * from.size.y;
+    //   card.setPos(x, y);
+    //   card.setFromPos(x, y);
     //   if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
     //     ballThrowed();
     //   }
-     }
+    //}
   }
 }
 
 function oldMaidEnd(){
-  ballManager.isHost = false;
-  ballManager.isUserHost = false;
-  ballManager.card = undefined;
+  cardManager.isHost = false;
+  cardManager.isUserHost = false;
+  cardManager.card = undefined;
   isOldMaid = false;
+}
+
+function getCollVideo(from, pointingLine) {
+  let hitPos;
+  if (hitPos = collLineVideo(localVideo, from, pointingLine)) {
+    return { video: localVideo, hitPos: hitPos };
+  }
+  for (let i = 0; i < others.length; i++) {
+    if (hitPos = collLineVideo(others[i], from, pointingLine)) {
+      return { video: others[i], hitPos: hitPos };
+    }
+  }
+  function collLineVideo(video, from, lineP) {
+    let leftUp = video.leftUpPos;
+    if (!leftUp || video.ID === from.ID) return undefined;
+    let rightBottom = new Vec(leftUp.x + video.size.x, leftUp.y + video.size.y);
+    let rightUp = new Vec(rightBottom.x, leftUp.y);
+    let leftBottom = new Vec(leftUp.x, rightBottom.y);
+    let sideArray = [new LineSeg(leftUp, rightUp), new LineSeg(rightUp, rightBottom), new LineSeg(rightBottom, leftBottom), new LineSeg(leftBottom, rightUp)]//4辺
+    let sideArrayLen = sideArray.length;
+    let hitPosition = undefined;
+    let distance = Number.MAX_SAFE_INTEGER;
+    for (let i = 0; i < sideArrayLen; i++) { //基本的に2本の辺に被るから4辺forを回す
+      if (collLineLine(sideArray[i].start, sideArray[i].end, lineP.start, lineP.end)) {
+        let linear = getLinear(new Vec(lineP.end.x - lineP.start.x, lineP.end.y - lineP.start.y), lineP.start);
+        let vec;
+        if (i % 2 === 0) {//上辺か下辺
+          let y = sideArray[i].start.y;
+          let x = (y - linear.b) / linear.a;
+          vec = new Vec(x, y);
+        } else {//右辺か左辺
+          let x = sideArray[i].start.x;
+          let y = linear.a * x + linear.b;
+          vec = new Vec(x, y);
+        }
+        let dist = pow(vec.x - lineP.start.x, 2) + pow(vec.y - lineP.start.y, 2);
+        if (dist < distance) {//より短い距離の交点を求める
+          distance = dist;
+          hitPosition = vec;
+        }
+      }
+    }
+    return hitPosition;
+    //当たり判定の計算
+    //https://qiita.com/ykob/items/ab7f30c43a0ed52d16f2
+    /**
+     * 線分の当たり判定
+     * @param {vec} a
+     * @param {vec} b 
+     * @param {vec} c 
+     * @param {vec} d 
+     */
+    function collLineLine(a, b, c, d) {
+      let ta = (c.x - d.x) * (a.y - c.y) + (c.y - d.y) * (c.x - a.x);
+      let tb = (c.x - d.x) * (b.y - c.y) + (c.y - d.y) * (c.x - b.x);
+      let tc = (a.x - b.x) * (c.y - a.y) + (a.y - b.y) * (a.x - c.x);
+      let td = (a.x - b.x) * (d.y - a.y) + (a.y - b.y) * (a.x - d.x);
+      return ta * tb <= 0 && tc * td <= 0;
+    }
+  }
+}
+
+/**
+ * ババ抜きに関する受信データの振り分け関数
+ *  @param {*} oldmaidMode モードの送信,受信相手
+ */
+function receiveOldStatus(oldMaidStart){
+  switch(oldmaidMode.mode){
+    case END:
+      oldMaidEnd();
+      return;
+    case CARD_NEXT:
+       nextUser();
+  }
+  function nextUser(){
+    let target = getVideoInst(oldMaidMode.target);
+      if (isOldMaid) {//2回目以降
+        cardManager.setTarget(target);
+      } else {//初回
+        isOldMaid = true;
+        cardManager.isUserHost = false;
+        let from = getVideoInst(oldMaidMode.from);
+        cardManager.createBall(from);
+        cardManager.setTarget(target);
+      }
+  }
 }
 
 class CardManager {
@@ -158,10 +285,17 @@ class CardManager {
   }
   finish() {
     this.member = [];
+    randoms = [];
     this.endFunc();
     Send(OLDMAID, { mode: END });
   }
 }
+
+// function cardErace(){
+//   if(randoms[0].toString().indexOf('1')>0 && randoms[1].toString().indexOf('1')>0){
+
+//   }
+// }
 
 class Card extends Obj{
   constructor(pos, from){
@@ -206,35 +340,44 @@ class Card extends Obj{
     // image(cardImg[randoms[4]], 80, 0, this.size, 2 * this.size);
     // pop();
 
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(this.rotation+20);
-    image(cardImg[randoms[0]], 60, -40, this.size, 2 * this.size);
-    pop();
+    // push();
+    // translate(this.pos.x-40, this.pos.y);
+    // rotate(this.rotation-20);
+    // image(cardImg[player[0]], 0, 0, this.size, 2 * this.size);
+    // pop();
 
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(this.rotation-15);
-    image(cardImg[randoms[1]], -40, 15, this.size, 2 * this.size);
-    pop();
+    // push();
+    // translate(this.pos.x-20, this.pos.y);
+    // rotate(this.rotation-15);
+    // image(cardImg[player[1]], 0, 0, this.size, 2 * this.size);
+    // pop();
 
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(this.rotation);
-    image(cardImg[randoms[2]], 0, 0, this.size, 2 * this.size);
-    pop();
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // rotate(this.rotation);
+    // image(cardImg[player[2]], 0, 0, this.size, 2 * this.size);
+    // pop();
 
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(this.rotation+15);
-    image(cardImg[randoms[3]], 40, 15, this.size, 2 * this.size);
-    pop();
+    // push();
+    // translate(this.pos.x+20, this.pos.y);
+    // rotate(this.rotation+15);
+    // image(cardImg[player[3]], 0, 0, this.size, 2 * this.size);
+    // pop();
 
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(this.rotation-20);
-    image(cardImg[randoms[4]], -60, -40, this.size, 2 * this.size);
-    pop();
+    // push();
+    // translate(this.pos.x+40, this.pos.y);
+    // rotate(this.rotation+20);
+    // image(cardImg[player[4]], 0, 0, this.size, 2 * this.size);
+    // pop();
+
+    let num;
+    for(num = 0; num < player.length; num++){
+      push();
+      translate(this.pos.x+((num - 2 / player.length) * 40), this.pos.y);
+      rotate(this.rotation);
+      image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
+      pop();
+    }
   }
   setTarget(target) {
     this.amt = 0;
