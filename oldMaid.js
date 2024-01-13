@@ -142,6 +142,7 @@ function oldMaidUpdate(){
     let x = localVideo.pos.x;
     let y = localVideo.pos.y;
     card.setPos(x,y);
+    card.setFromPos(x,y);
 
     
 
