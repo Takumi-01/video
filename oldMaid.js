@@ -4,6 +4,7 @@ let cardImg = [];
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 const CARD_NEXT = 'NEXTUSER';
+const CARD_TRACKING = 'CARD_TRACKING';
 const ROUND = 'ROUND';
 
 let isRound = true;
@@ -22,23 +23,51 @@ function intRandom(min, max){
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
 
+//配列の要素をシャッフルするやつ
+function arrayShuffle(array) {
+  for(let i = (array.length - 1); 0 < i; i--){
+
+    // 0〜(i+1)の範囲で値を取得
+    let r = Math.floor(Math.random() * (i + 1));
+
+    // 要素の並び替えを実行
+    let tmp = array[i];
+    array[i] = array[r];
+    array[r] = tmp;
+  }
+  return array;
+}
+
 function intShuffle(num){
   if(num == 0){
     for(i = 0; i <= Cardmax; i += 2){
       player.push(randoms[i]);
       opponent.push(randoms[i+1]);
     }
-  }else {
-    for(i = 0; i <= 2 / Cardmax; i++){
-      player[i] = randoms[i];
-      opponent[i + 2 / Cardmax] = randoms[i + 2 / Cardmax];
-    }
+  }else if(num > 0){
+    // for(i = 0; i <= 2 / Cardmax; i++){
+    //   player[i] = randoms[i];
+    //   opponent[i + 2 / Cardmax] = randoms[i + 2 / Cardmax];
+    // }
+    arrayShuffle(player);
+    arrayShuffle(opponent);
   }
   shuffleNum += 1;
 }
 
 function oldMaidInit(){
+  randoms = [];
   shuffleNum = 0;
+  let i;
+  for(i = Cardmin; i <= Cardmax; i++){
+    while(true){
+      let rnd = intRandom(Cardmin, Cardmax);
+      if(!randoms.includes(rnd)){
+        randoms.push(rnd);
+        break;
+      }
+    }
+  }
   cardManager = new CardManager(() => {
     oldMaidEnd();
   });
@@ -53,16 +82,7 @@ function oldMaidInit(){
 //ババ抜きstart
 function oldMaidStart(){
   isOldMaid = true;
-  let i;
-  for(i = Cardmin; i <= Cardmax; i++){
-    while(true){
-      let rnd = intRandom(Cardmin, Cardmax);
-      if(!randoms.includes(rnd)){
-        randoms.push(rnd);
-        break;
-      }
-    }
-  }
+  
   intShuffle(shuffleNum);
   // for(i = 0; i <= Cardmax; i += 2){
   //     player.push(randoms[i]);
@@ -81,6 +101,7 @@ function oldMaidUpdate(){
   stroke(255, 255, 0, 255);
   strokeWeight(2);
   noFill();
+  rect(from.pos.x, from.pos.y, from.size.x, from.size.y);
 
   trackingMode();
 
@@ -108,7 +129,7 @@ function oldMaidUpdate(){
         rect(hitVideo.pos.x, hitVideo.pos.y, hitVideo.size.x, hitVideo.size.y);
         if (cardManager.isUserHost && hitVideo !== card.target) {
           cardManager.changeTarget(hitVideo);
-          Send(OLDMAID, { mode: STATE_NEXTUSER, from: undefined, target: hitVideo.ID });
+          Send(OLDMAID, { mode: CARD_NEXT, from: undefined, target: hitVideo.ID });
         }
       } else {
         drawingContext.setLineDash([width * 0.01, width * 0.02]);
@@ -118,10 +139,11 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let leftUp = from.leftUpPos;
-    let x = leftUp.x + handsPos.x *from.size.x;
-    let y = leftUp.y + handsPos.y *from.size.y;
+    let x = localVideo.pos.x;
+    let y = localVideo.pos.y;
     card.setPos(x,y);
+
+    
 
     // if (handsPos) {
     //   let leftUp = from.leftUpPos;
@@ -140,6 +162,7 @@ function oldMaidEnd(){
   cardManager.isHost = false;
   cardManager.isUserHost = false;
   cardManager.card = undefined;
+  cardManager.cardMode = CARD_TRACKING;
   isOldMaid = false;
 }
 
@@ -207,8 +230,8 @@ function getCollVideo(from, pointingLine) {
  * ババ抜きに関する受信データの振り分け関数
  *  @param {*} oldmaidMode モードの送信,受信相手
  */
-function receiveOldStatus(oldMaidStart){
-  switch(oldmaidMode.mode){
+function receiveOldStatus(oldMaidMode){
+  switch(oldMaidMode.mode){
     case END:
       oldMaidEnd();
       return;
@@ -229,6 +252,10 @@ function receiveOldStatus(oldMaidStart){
   }
 }
 
+function getCanChange() {
+  return !isOldMaid || (!isRound && cardManager.cardMode === CARD_TRACKING);
+}
+
 class CardManager {
   constructor(endFunc) {
     this.member = [];//参加者
@@ -237,41 +264,43 @@ class CardManager {
     this.isHost = false;
     this.isUserHost = false;
     this.selectMode = cardUserTypes[0];
+    this.cardType = cardTypes[0];
     this.catchingTime = 0;
   }
   start() {
     this.isUserHost = true;
     this.isHost = true;
+    this.cardMode = CARD_TRACKING;
     this.createCard(localVideo);
-    // switch (this.selectMode) {
-    //   case catchUserTypes[0]:
-    //   //配列の早いコピーらしい
-    //   //https://qiita.com/takahiro_itazuri/items/882d019f1d8215d1cb67#comment-1b338078985aea9f600a
-    //   this.member = [...others];
-    //   this.setTarget(this.getNext());
-    //   break;
-    // case cardUserTypes[1]:
-    let fAndT = this.card.getFromTargetID();
-    Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
-    //   break;
-    // }
+    switch (this.selectMode) {
+      case cardUserTypes[0]:
+      //配列の早いコピーらしい
+      //https://qiita.com/takahiro_itazuri/items/882d019f1d8215d1cb67#comment-1b338078985aea9f600a
+      this.member = [...others];
+      //this.setTarget(this.getNext());
+      break;
+    case cardUserTypes[1]:
+      let fAndT = this.card.getFromTargetID();
+      Send(OLDMAID, { mode: CARDSELECT, from: fAndT.from, target: undefined });
+        break;
+    }
   }
   createCard(video) {
     this.card = new Card(video.pos.copy(), video);
   }
 
-  // setOldMaidSelectMode(mode) {
-  //   let isCanChange = getCanChange();
-  //   if (isCanChange) {
-  //     this.selectMode = mode;
-  //     $('#cardUserSelect').val(mode);
-  //     let index = ballTypes.indexOf(this.selectMode);
-  //     if (this.card) this.setBallImgIndex(index);
-  //   } else {
-  //     $('#cardUserSelect').val(this.selectMode);
-  //   }
-  //   return isCanChange;
-  // }
+  setOldMaidSelectMode(mode) {
+    let isCanChange = getCanChange();
+    if (isCanChange) {
+      this.selectMode = mode;
+      $('#cardUserSelect').val(mode);
+      let index = cardTypes.indexOf(this.selectMode);
+      if (this.card) this.setcardImgIndex(index);
+    } else {
+      $('#cardUserSelect').val(this.selectMode);
+    }
+    return isCanChange;
+  }
 
   // getNext(){
   //   let next;
@@ -285,9 +314,11 @@ class CardManager {
   }
   finish() {
     this.member = [];
-    randoms = [];
     this.endFunc();
     Send(OLDMAID, { mode: END });
+  }
+  getCardImgIndex(){
+    return cardTypes.indexOf(this.cardType);
   }
 }
 
@@ -378,6 +409,13 @@ class Card extends Obj{
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
     }
+    for(num = 0; num < opponent.length; num++){
+      push();
+      translate(others[0].pos.x+((num - 2 / opponent.length) * 40), this.pos.y);
+      rotate(others[0].rotation);
+      image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+      pop();
+    }
   }
   setTarget(target) {
     this.amt = 0;
@@ -398,6 +436,9 @@ class Card extends Obj{
   setFromPos(x, y) {
     this.fromPos.x = x;
     this.fromPos.y = y;
+  }
+  setCardImgIndex(index) {
+    this.card.cardTypeIndex = index;
   }
   // setSize(x, y){
   //   this.width = x;

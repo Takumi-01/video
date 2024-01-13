@@ -488,8 +488,9 @@ function ReceiveStartCatch(video, fromAndTo) {
 }
 
 function ReceiveStartOld(video, select){
-  cardUserSelected = select;
-  $("#cardUserSelect").val(select);
+  // cardUserSelected = select;
+  // $("#cardUserSelect").val(select);
+  receiveOldStatus(select);//→ oldMaid.js 
 }
 
 function ReceiveDrawHands(checked) {

@@ -21,6 +21,7 @@ let catchUserTypes = ['ランダム', '指さし'];
 let flyingTypes = ['直線', '曲線'];
 let ballTypes = ['ボール', "くまさん", "ボム"];
 let cardUserTypes = ['機能なし','機能あり'];
+let cardTypes = ['トランプ'];
 let cardUserSelected;
 $(function () {
 
@@ -103,8 +104,10 @@ $(function () {
   //   }
   // });
   cardUserSelect.on('change', () => {
-    cardUserSelected = cardUserSelect.val();
-    Send(OLDMAID, cardUserSelected);
+    let isChanged = cardManager.setOldMaidSelectMode(cardUserSelect.val());
+    if (isChanged) {
+      Send(CATCHBALL, { mode: USERSELECT, state: ballManager.selectMode });
+    }
   });
   
   //初めて利用する人にカメラ許可ダイアログを出すためのgetUsrMedia
