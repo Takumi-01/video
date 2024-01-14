@@ -312,6 +312,17 @@ class CardManager {
   //     }
   //   }
   // }
+  setTarget(next) {
+    this.card.setTarget(next);
+    this.card.rotation = 0;
+    if (this.isUserHost) {
+      let fAndT = this.card.getFromTargetID();
+      Send(OLDMAID, { from: fAndT.from, target: fAndT.target, mode: CARD_NEXT });
+    }
+  }
+  changeTarget(target) {
+    this.card.changeTarget(target);
+  }
   setFrom(from) {
     this.card.setFrom(from);
   }
