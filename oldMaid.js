@@ -287,7 +287,8 @@ class CardManager {
     }
   }
   createCard(video) {
-    this.card = new Card(video.pos.copy(), video);
+    let cardTypeIndex = this.getCardImgIndex();
+    this.card = new Card(video.pos.copy(), video, cardTypeIndex);
   }
 
   setOldMaidSelectMode(mode) {
@@ -296,7 +297,7 @@ class CardManager {
       this.selectMode = mode;
       $('#cardUserSelect').val(mode);
       let index = cardTypes.indexOf(this.selectMode);
-      if (this.card) this.setcardImgIndex(index);
+      if (this.card) this.setCardImgIndex(index);
     } else {
       $('#cardUserSelect').val(this.selectMode);
     }
@@ -312,6 +313,9 @@ class CardManager {
   // }
   setFrom(from) {
     this.card.setFrom(from);
+  }
+  setCardImgIndex(index) {
+    this.card.cardTypeIndex = index;
   }
   finish() {
     this.member = [];
@@ -330,10 +334,11 @@ class CardManager {
 // }
 
 class Card extends Obj{
-  constructor(pos, from){
+  constructor(pos, from, cardTypeIndex){
     super(pos, cardSize);
     this.target;//相手
     this.from = from;
+    this.cardTypeIndex = cardTypeIndex;
     this.rotation = 0;//角度
     this.fromPos = createVector();
     this.amt = 0; 
