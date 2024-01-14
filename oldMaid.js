@@ -247,7 +247,7 @@ function receiveOldStatus(oldMaidMode){
         isOldMaid = true;
         cardManager.isUserHost = false;
         let from = getVideoInst(oldMaidMode.from);
-        cardManager.createBall(from);
+        cardManager.createCard(from);
         cardManager.setTarget(target);
       }
   }
