@@ -106,7 +106,7 @@ $(function () {
   cardUserSelect.on('change', () => {
     let isChanged = cardManager.setOldMaidSelectMode(cardUserSelect.val());
     if (isChanged) {
-      Send(CATCHBALL, { mode: USERSELECT, state: ballManager.selectMode });
+      Send(OLDMAID, { mode: CARDSELECT, state: cardManager.selectMode });
     }
   });
   

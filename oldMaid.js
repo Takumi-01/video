@@ -446,6 +446,9 @@ class Card extends Obj{
   changeTarget(target) {
     this.target = target;
   }
+  setPosVec(vec) {
+    this.setPos(vec.x, vec.y);
+  }
   setPos(x, y) {
     this.prevPos = this.pos.copy();
     this.pos.x = x;
@@ -454,9 +457,6 @@ class Card extends Obj{
   setFromPos(x, y) {
     this.fromPos.x = x;
     this.fromPos.y = y;
-  }
-  setCardImgIndex(index) {
-    this.card.cardTypeIndex = index;
   }
   // setSize(x, y){
   //   this.width = x;
