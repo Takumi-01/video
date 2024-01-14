@@ -265,6 +265,7 @@ class CardManager {
     this.isHost = false;
     this.isUserHost = false;
     this.selectMode = cardUserTypes[0];
+    this.cardMode = CARD_TRACKING;
     this.cardType = cardTypes[0];
     this.catchingTime = 0;
   }
