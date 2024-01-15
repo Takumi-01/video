@@ -150,16 +150,23 @@ function oldMaidUpdate(){
 
     
 
-    // if (handsPos) {
-    //   let leftUp = from.leftUpPos;
-    //   let x = leftUp.x + handsPos.x * from.size.x;
-    //   let y = leftUp.y + handsPos.y * from.size.y;
-    //   card.setPos(x, y);
-    //   card.setFromPos(x, y);
-    //   if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
-    //     ballThrowed();
-    //   }
-    //}
+    if (handsPos) {
+      let leftUp = from.leftUpPos;
+     
+      let px = localVideo.pos.x;
+      let py = localVideo.pos.y;
+
+      let ox = others[0].pos.x;
+      let oy = others[0].pos.y;
+      
+      // let x = leftUp.x + handsPos.x * from.size.x;
+      // let y = leftUp.y + handsPos.y * from.size.y;
+      card.setPos(px, py);
+      card.setFromPos(ox, oy);
+      // if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
+      //   ballThrowed();
+      // }
+    }
   }
 }
 
