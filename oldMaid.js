@@ -433,14 +433,14 @@ class Card extends Obj{
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(this.pos.x+((num - 2 / player.length) * 40), this.pos.y);
+      translate(this.pos.x+((num - 2 / player.length) * 20), this.pos.y);
       rotate(this.rotation);
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
     }
     for(num = 0; num < opponent.length; num++){
       push();
-      translate(others[0].pos.x+((num - 2 / opponent.length) * 40), this.pos.y);
+      translate(others[0].pos.x+((num - 2 / opponent.length) * 20), this.pos.y);
       rotate(others[0].rotation);
       image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       pop();
