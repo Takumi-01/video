@@ -96,6 +96,7 @@ function oldMaidUpdate(){
   let manager = cardManager;
   let card = manager.card;
   let from = card.from;
+  let target = card.target;
 
   //順番者の協調
   stroke(255, 255, 0, 255);
