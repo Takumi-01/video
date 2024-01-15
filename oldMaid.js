@@ -178,6 +178,22 @@ function oldMaidEnd(){
   isOldMaid = false;
 }
 
+/**
+ * 判定
+ * @param {video} video 
+ * @param {vec} handsPos 
+ */
+
+/**
+ * カードの動き方
+ * @param {PVector} fromPos 
+ * @param {PVector} targetPos 
+ * @param {value} amt 
+ * @param {Video} from 
+ * @param {Video} target 
+ * @returns {PVector}
+ */
+
 function getCollVideo(from, pointingLine) {
   let hitPos;
   if (hitPos = collLineVideo(localVideo, from, pointingLine)) {
