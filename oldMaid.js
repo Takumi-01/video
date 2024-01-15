@@ -143,8 +143,8 @@ function oldMaidUpdate(){
     let px = from.pos.x;
     let py = from.pos.y;
 
-    // let ox = target.pos.x;
-    // let oy = target.pos.y;
+    // let ox = ;
+    // let oy = ;
 
     card.setPos(px,py);
     //card.setFromPos(ox,oy);
@@ -473,7 +473,7 @@ class Card extends Obj{
     }
     for(num = 0; num < opponent.length; num++){
       push();
-      translate(others[0].pos.x+((num - 2 / opponent.length) * 20), this.pos.y);
+      translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
       rotate(others[0].rotation);
       image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       pop();
