@@ -139,13 +139,13 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let px = localVideo.pos.x;
-    let py = localVideo.pos.y;
+    // let px = localVideo.pos.x;
+    // let py = localVideo.pos.y;
 
-    let ox = others[0].pos.x;
-    let oy = others[0].pos.y;
+    // let ox = others[0].pos.x;
+    // let oy = others[0].pos.y;
 
-    card.setPos(px,py);
+    // card.setPos(px,py);
     //card.setFromPos(ox,oy);
 
     
@@ -153,16 +153,16 @@ function oldMaidUpdate(){
     if (handsPos) {
       let leftUp = from.leftUpPos;
       
-      let px = localVideo.pos.x;
-      let py = localVideo.pos.y;
+      let px = localVideo.pos.x + leftUp.x;
+      let py = localVideo.pos.y + leftUp.y;
 
-      let ox = others[0].pos.x;
-      let oy = others[0].pos.y;
+      let ox = others[0].pos.x + leftUp.x;
+      let oy = others[0].pos.y + leftUp.y;
       
       let x = leftUp.x + handsPos.x * from.size.x;
       let y = leftUp.y + handsPos.y * from.size.y;
-      card.setPos(x, y);
-      card.setFromPos(x, y);
+      card.setPos(px, py);
+      card.setFromPos(ox, oy);
       // if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
       //   ballThrowed();
       // }
