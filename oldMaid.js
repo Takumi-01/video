@@ -151,13 +151,14 @@ function oldMaidUpdate(){
     
 
     if (handsPos) {
-      let leftUp = from.leftUpPos;
+      let pLeftUp = from.leftUpPos;
+      let oLeftUp = target.leftUpPos;
       
-      let px = localVideo.pos.x + leftUp.x;
-      let py = localVideo.pos.y + leftUp.y;
+      let px = localVideo.pos.x + pLeftUp.x;
+      let py = localVideo.pos.y + pLeftUp.y;
 
-      let ox = others[0].pos.x + leftUp.x;
-      let oy = others[0].pos.y + leftUp.y;
+      let ox = others[0].pos.x + oLeftUp.x;
+      let oy = others[0].pos.y + oLeftUp.y;
       
       let x = leftUp.x + handsPos.x * from.size.x;
       let y = leftUp.y + handsPos.y * from.size.y;
