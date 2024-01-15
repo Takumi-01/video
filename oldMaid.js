@@ -143,8 +143,8 @@ function oldMaidUpdate(){
     let px = from.pos.x;
     let py = from.pos.y;
 
-    let ox = target.pos.x;
-    let oy = target.pos.y;
+    // let ox = target.pos.x;
+    // let oy = target.pos.y;
 
     card.setPos(px,py);
     card.setFromPos(ox,oy);
