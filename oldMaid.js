@@ -194,6 +194,19 @@ function oldMaidEnd(){
  * @returns {PVector}
  */
 
+/**
+ * ビデオの指からレーザーを出せる座標を取得
+ * @param {Video} video 
+ * @returns {Line}
+ */
+
+/**
+ * 他の参加者と線の当たり判定
+ * @param {Line} pointingLine 
+ * @returns {{video,Vec}}
+ */
+
+
 function getCollVideo(from, pointingLine) {
   let hitPos;
   if (hitPos = collLineVideo(localVideo, from, pointingLine)) {
