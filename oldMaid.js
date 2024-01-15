@@ -140,11 +140,11 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let px = localVideo.pos.x;
-    let py = localVideo.pos.y;
+    let px = from.pos.x;
+    let py = from.pos.y;
 
-    let ox = others[0].pos.x;
-    let oy = others[0].pos.y;
+    let ox = target.pos.x;
+    let oy = target.pos.y;
 
     card.setPos(px,py);
     card.setFromPos(ox,oy);
@@ -221,6 +221,7 @@ function getCollVideo(from, pointingLine) {
   }
   function collLineVideo(video, from, lineP) {
     let leftUp = video.leftUpPos;
+    
     if (!leftUp || video.ID === from.ID) return undefined;
     let rightBottom = new Vec(leftUp.x + video.size.x, leftUp.y + video.size.y);
     let rightUp = new Vec(rightBottom.x, leftUp.y);
@@ -396,6 +397,7 @@ class Card extends Obj{
     this.rotation = 0;//角度
     this.fromPos = createVector();
     this.amt = 0; 
+    this.CleftUpPos;
 
   }
   update(){
@@ -508,6 +510,9 @@ class Card extends Obj{
     let from = this.from ? this.from.ID : undefined;
     let target = this.target ? this.target.ID : undefined;
     return { from: from, target: target };
+  }
+  updateCardLeftUpPos() {
+    this.CleftUpPos = createVector(this.pos.x - this.size.x / 2, this.pos.y - this.size.y / 2);
   }
   
 }
