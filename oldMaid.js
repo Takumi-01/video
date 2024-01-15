@@ -139,10 +139,14 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let x = localVideo.pos.x;
-    let y = localVideo.pos.y;
-    card.setPos(x,y);
-    card.setFromPos(x,y);
+    let px = localVideo.pos.x;
+    let py = localVideo.pos.y;
+
+    let ox = others[0].pos.x;
+    let oy = others[0].pos.y;
+
+    card.setPos(px,py);
+    card.setFromPos(ox,oy);
 
     
 
@@ -247,7 +251,7 @@ function receiveOldStatus(oldMaidMode){
         isOldMaid = true;
         cardManager.isUserHost = false;
         let from = getVideoInst(oldMaidMode.from);
-        cardManager.createCard(from);
+        //cardManager.createCard(from);
         cardManager.setTarget(target);
       }
   }
