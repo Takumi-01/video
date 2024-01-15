@@ -380,6 +380,31 @@ class CardManager {
   getCardImgIndex(){
     return cardTypes.indexOf(this.cardType);
   }
+  getNext() {
+    let next;
+    if (isRound) {
+      if (this.member.length > 0) {
+        let index = randomInt(this.member.length);
+        next = this.member[index];
+        this.member.splice(index, 1);
+      } else {//もう渡ってない人がいない
+        next = localVideo;//ラスト自分
+      }
+    } else {//ずっと巡るモード
+      let targetID = this.card.target ? this.card.target.ID : localVideo;
+      if (this.member.length === 0) {
+        this.member = [...others];
+        this.member.push(localVideo);
+      }
+      let index;
+      do {
+        index = randomInt(this.member.length);
+        next = this.member[index];
+      } while (next.ID === targetID);
+      this.member.splice(index, 1);
+    }
+    return next;
+  }
 }
 
 // function cardErace(){
