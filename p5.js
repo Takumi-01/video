@@ -212,7 +212,6 @@ function draw() {
       oldMaidUpdate();
     }
   }
-  
   animation.update();
 }
 
@@ -468,7 +467,6 @@ function ReceiveRegular(video, receiveMessage) {
     averagePing = ave / (others.length + 1);
     if (log) console.log(averagePing);
   }
-
 }
 
 function ReceiveHighFiveSelect(video, select) {
@@ -556,9 +554,6 @@ function createAnimeImg(img, pos, dire, rotateR = 0) {
   anime.finish = () => { };
   return anime;
 }
-
-
-
 
 //他参加者のdrawと手の位置の平均値計算して返す
 function DrawAndCalcOthers() {
@@ -683,7 +678,6 @@ function getCenterMark(video, minMaxPos) {
 
   return new Obj(pos, createVector(size, size));
 }
-
 
 //https://google.github.io/mediapipe/solutions/hands#javascript-solution-api
 function DrawConnectors(video, marks, weight) {
