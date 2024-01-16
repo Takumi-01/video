@@ -84,10 +84,6 @@ function oldMaidStart(){
   isOldMaid = true;
   
   intShuffle(shuffleNum);
-  // for(i = 0; i <= Cardmax; i += 2){
-  //     player.push(randoms[i]);
-  //     opponent.push(randoms[i+1]);
-  // }
   cardManager.start();
 }
 
@@ -148,27 +144,6 @@ function oldMaidUpdate(){
 
     card.setPos(px,py);
     //card.setFromPos(ox,oy);
-
-    
-
-    // if (handsPos) {
-      // let pLeftUp = from.leftUpPos;
-      // let oLeftUp = target.leftUpPos;
-      
-      // let px = localVideo.pos.x;
-      // let py = localVideo.pos.y;
-
-      // let ox = others[0].pos.x;
-      // let oy = others[0].pos.y;
-      
-      // let x = leftUp.x + handsPos.x * from.size.x;
-      // let y = leftUp.y + handsPos.y * from.size.y;
-      // card.setPos(px, py);
-      // card.setFromPos(ox, oy);
-      // if (card.from.ID === localVideo.ID && getThrowJudge(from, handsPos)) {//投げた判定
-      //   ballThrowed();
-      // }
-    // }
   }
 }
 
@@ -348,13 +323,6 @@ class CardManager {
     return isCanChange;
   }
 
-  // getNext(){
-  //   let next;
-  //   if(isRound){
-  //     if(this.member.length > 0){
-  //     }
-  //   }
-  // }
   setTarget(next) {
     this.card.setTarget(next);
     this.card.rotation = 0;
@@ -407,12 +375,6 @@ class CardManager {
   }
 }
 
-// function cardErace(){
-//   if(randoms[0].toString().indexOf('1')>0 && randoms[1].toString().indexOf('1')>0){
-
-//   }
-// }
-
 class Card extends Obj{
   constructor(pos, from, cardTypeIndex){
     super(pos, cardSize);
@@ -435,59 +397,6 @@ class Card extends Obj{
     }
 
     //カード表示
-    
-    
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // image(cardImg[randoms[0]], -80, 0, this.size, 2 * this.size);
-    // pop();
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // image(cardImg[randoms[1]], -40, 0, this.size, 2 * this.size);
-    // pop();
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // image(cardImg[randoms[2]], 0, 0, this.size, 2 * this.size);
-    // pop();
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // image(cardImg[randoms[3]], 40, 0, this.size, 2 * this.size);
-    // pop();
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // image(cardImg[randoms[4]], 80, 0, this.size, 2 * this.size);
-    // pop();
-
-    // push();
-    // translate(this.pos.x-40, this.pos.y);
-    // rotate(this.rotation-20);
-    // image(cardImg[player[0]], 0, 0, this.size, 2 * this.size);
-    // pop();
-
-    // push();
-    // translate(this.pos.x-20, this.pos.y);
-    // rotate(this.rotation-15);
-    // image(cardImg[player[1]], 0, 0, this.size, 2 * this.size);
-    // pop();
-
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // rotate(this.rotation);
-    // image(cardImg[player[2]], 0, 0, this.size, 2 * this.size);
-    // pop();
-
-    // push();
-    // translate(this.pos.x+20, this.pos.y);
-    // rotate(this.rotation+15);
-    // image(cardImg[player[3]], 0, 0, this.size, 2 * this.size);
-    // pop();
-
-    // push();
-    // translate(this.pos.x+40, this.pos.y);
-    // rotate(this.rotation+20);
-    // image(cardImg[player[4]], 0, 0, this.size, 2 * this.size);
-    // pop();
-
     let num;
     for(num = 0; num < player.length; num++){
       push();
@@ -527,10 +436,6 @@ class Card extends Obj{
     this.fromPos.x = x;
     this.fromPos.y = y;
   }
-  // setSize(x, y){
-  //   this.width = x;
-  //   this.height = y;
-  // }
   getFromTargetID() {
     let from = this.from ? this.from.ID : undefined;
     let target = this.target ? this.target.ID : undefined;
