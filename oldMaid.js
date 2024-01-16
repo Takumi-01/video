@@ -1,22 +1,19 @@
 let isOldMaid = false;
 let cardManager;
 let cardImg = [];//カードの画像を格納する配列
+let isRound = true;
+let randoms = new Array();//シャッフルされたカードを格納する配列
+let Cardmin = 0;
+let Cardmax = 9;
+let player = new Array();//自分のカードの枚数を管理する配列
+let opponent = new Array();//相手のカードの枚数を管理する配列
+let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
+
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 const CARD_NEXT = 'NEXTUSER';
 const CARD_TRACKING = 'CARD_TRACKING';
 const ROUND = 'ROUND';
-
-let isRound = true;
-
-let randoms = new Array();//シャッフルされたカードを格納する配列
-let Cardmin = 0;
-let Cardmax = 9;
-
-let player = new Array();//自分のカードの枚数を管理する配列
-let opponent = new Array();//相手のカードの枚数を管理する配列
-
-let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
 
 //ババ抜きsetup
 function intRandom(min, max){
@@ -55,6 +52,7 @@ function intShuffle(num){
   }
   shuffleNum += 1;
 }
+
 //ババ抜きの初期化
 function oldMaidInit(){
   randoms = [];
@@ -142,6 +140,7 @@ function oldMaidUpdate(){
     //card.setFromPos(ox,oy);
   }
 }
+
 //ババ抜きを終わらせる処理
 function oldMaidEnd(){
   cardManager.isHost = false;
@@ -156,7 +155,6 @@ function oldMaidEnd(){
  * @param {video} video 
  * @param {vec} handsPos 
  */
-
 /**
  * カードの動き方
  * @param {PVector} fromPos 
@@ -166,20 +164,16 @@ function oldMaidEnd(){
  * @param {Video} target 
  * @returns {PVector}
  */
-
 /**
  * ビデオの指からレーザーを出せる座標を取得
  * @param {Video} video 
  * @returns {Line}
  */
-
 /**
  * 他の参加者と線の当たり判定
  * @param {Line} pointingLine 
  * @returns {{video,Vec}}
  */
-
-
 function getCollVideo(from, pointingLine) {
   let hitPos;
   if (hitPos = collLineVideo(localVideo, from, pointingLine)) {
@@ -192,7 +186,6 @@ function getCollVideo(from, pointingLine) {
   }
   function collLineVideo(video, from, lineP) {
     let leftUp = video.leftUpPos;
-    
     if (!leftUp || video.ID === from.ID) return undefined;
     let rightBottom = new Vec(leftUp.x + video.size.x, leftUp.y + video.size.y);
     let rightUp = new Vec(rightBottom.x, leftUp.y);
@@ -439,6 +432,5 @@ class Card extends Obj{
   updateCardLeftUpPos() {
     this.CleftUpPos = createVector(this.pos.x - this.size.x / 2, this.pos.y - this.size.y / 2);
   }
-  
 }
 
