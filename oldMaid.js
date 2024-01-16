@@ -1,6 +1,6 @@
 let isOldMaid = false;
 let cardManager;
-let cardImg = [];
+let cardImg = [];//カードの画像を格納する配列
 const cardSize = 40;
 const CARDSELECT = 'CARDSELECT';
 const CARD_NEXT = 'NEXTUSER';
@@ -9,14 +9,14 @@ const ROUND = 'ROUND';
 
 let isRound = true;
 
-let randoms = new Array();
+let randoms = new Array();//シャッフルされたカードを格納する配列
 let Cardmin = 0;
 let Cardmax = 9;
 
-let player = new Array();
-let opponent = new Array();
+let player = new Array();//自分のカードの枚数を管理する配列
+let opponent = new Array();//相手のカードの枚数を管理する配列
 
-let shuffleNum;
+let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
 
 //ババ抜きsetup
 function intRandom(min, max){
@@ -26,7 +26,6 @@ function intRandom(min, max){
 //配列の要素をシャッフルするやつ
 function arrayShuffle(array) {
   for(let i = (array.length - 1); 0 < i; i--){
-
     // 0〜(i+1)の範囲で値を取得
     let r = Math.floor(Math.random() * (i + 1));
 
@@ -39,11 +38,13 @@ function arrayShuffle(array) {
 }
 
 function intShuffle(num){
+  //一番最初にカードを配る処理
   if(num == 0){
     for(i = 0; i <= Cardmax; i += 2){
       player.push(randoms[i]);
       opponent.push(randoms[i+1]);
     }
+  //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
     // for(i = 0; i <= 2 / Cardmax; i++){
     //   player[i] = randoms[i];
@@ -54,7 +55,7 @@ function intShuffle(num){
   }
   shuffleNum += 1;
 }
-
+//ババ抜きの初期化
 function oldMaidInit(){
   randoms = [];
   shuffleNum = 0;
@@ -82,7 +83,6 @@ function oldMaidInit(){
 //ババ抜きstart
 function oldMaidStart(){
   isOldMaid = true;
-  
   intShuffle(shuffleNum);
   cardManager.start();
 }
@@ -93,7 +93,6 @@ function oldMaidUpdate(){
   let card = manager.card;
   let from = card.from;
   let target = card.target;
-
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
@@ -105,7 +104,6 @@ function oldMaidUpdate(){
   function trackingMode() {
     let minMaxes = from.minMaxes;
     let handsPos = undefined;
-
     for (let i = 0; i < 2; i++) {
       if (minMaxes[i]) {
         handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
@@ -138,15 +136,13 @@ function oldMaidUpdate(){
 
     let px = from.pos.x;
     let py = from.pos.y;
-
     // let ox = ;
     // let oy = ;
-
     card.setPos(px,py);
     //card.setFromPos(ox,oy);
   }
 }
-
+//ババ抜きを終わらせる処理
 function oldMaidEnd(){
   cardManager.isHost = false;
   cardManager.isUserHost = false;
@@ -309,7 +305,6 @@ class CardManager {
     let cardTypeIndex = this.getCardImgIndex();
     this.card = new Card(video.pos.copy(), video, cardTypeIndex);
   }
-
   setOldMaidSelectMode(mode) {
     let isCanChange = getCanChange();
     if (isCanChange) {
@@ -322,7 +317,6 @@ class CardManager {
     }
     return isCanChange;
   }
-
   setTarget(next) {
     this.card.setTarget(next);
     this.card.rotation = 0;
@@ -395,9 +389,9 @@ class Card extends Obj{
       noFill();
       rect(this.target.pos.x, this.target.pos.y, this.target.size.x, this.target.size.y);
     }
-
     //カード表示
     let num;
+    //自分のカード
     for(num = 0; num < player.length; num++){
       push();
       translate(this.pos.x+((num - 2 / player.length) * 20), this.pos.y);
@@ -405,6 +399,7 @@ class Card extends Obj{
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
     }
+    //相手のカード
     for(num = 0; num < opponent.length; num++){
       push();
       translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
