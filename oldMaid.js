@@ -11,6 +11,7 @@ let shuffleNum;//自分のカードをシャッフルした回数を管理する
 
 const cardSize = 40;
 const CARD = 'CARD';
+const CARD_CHOICE = 'CARD_CHOICE';
 const CARD_TRACKING = 'CARD_TRACKING';
 const CARD_WAIT = 'CARD_WAIT';
 const CARDSELECT = 'CARDSELECT';
