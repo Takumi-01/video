@@ -10,9 +10,11 @@ let opponent = new Array();//相手のカードの枚数を管理する配列
 let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
 
 const cardSize = 40;
+const CARD = 'CARD';
+const CARD_TRACKING = 'CARD_TRACKING';
+const CARD_WAIT = 'CARD_WAIT';
 const CARDSELECT = 'CARDSELECT';
 const CARD_NEXT = 'NEXTUSER';
-const CARD_TRACKING = 'CARD_TRACKING';
 const ROUND = 'ROUND';
 
 //ババ抜きsetup
@@ -243,8 +245,15 @@ function receiveOldStatus(oldMaidMode){
     case END:
       oldMaidEnd();
       return;
+
+    case CARD:
+      switch(oldMaidMode.state){
+
+      }
     case CARD_NEXT:
-       nextUser();
+      nextUser();
+      return;
+
   }
   function nextUser(){
     let target = getVideoInst(oldMaidMode.target);
@@ -384,6 +393,7 @@ class Card extends Obj{
     }
     //カード表示
     let num;
+    let OLength;
     //自分のカード
     for(num = 0; num < player.length; num++){
       push();
@@ -399,6 +409,9 @@ class Card extends Obj{
       rotate(others[0].rotation);
       image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       pop();
+    }
+    for(OLength = 0; OLength < cardManager.member.length; OLength++){
+
     }
   }
   setTarget(target) {
