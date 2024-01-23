@@ -411,7 +411,13 @@ class Card extends Obj{
       pop();
     }
     for(OLength = 0; OLength < cardManager.member.length; OLength++){
-
+      for(num = 0; num < opponent.length; num++){
+        push();
+        translate(others[OLength].pos.x+((num - 2 / opponent.length) * 20), others[OLength].pos.y);
+        rotate(others[OLength].rotation);
+        image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+        pop();
+      }
     }
   }
   setTarget(target) {
