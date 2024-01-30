@@ -145,7 +145,7 @@ function oldMaidUpdate(){
     // let ox = ;
     // let oy = ;
     card.setPos(x,y);
-    card.setFromPos(x,y);
+    //card.setFromPos(x,y);
   }
 }
 
