@@ -135,7 +135,7 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let LeftUp = from.leftUpPos;
+    let leftUp = from.leftUpPos;
 
     let x = leftUp.x + handsPos.x * from.size.x;
     let y = leftUp.y + handsPos.y * from.size.y;
