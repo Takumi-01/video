@@ -139,20 +139,20 @@ function oldMaidUpdate(){
     card.update();
 
     let pLeftUp = from.leftUpPos;
-    let oLeftUp = part.leftUpPos;
+    //let oLeftUp = part.leftUpPos;
 
     let px = pLeftUp.x + handsPos.x * from.size.x;
     let py = pLeftUp.y + handsPos.y * from.size.y;
 
-    let ox = oLeftUp.x + handsPos.x * part.size.x;
-    let oy = oLeftUp.y + handsPos.y * part.size.y;
+    //let ox = oLeftUp.x + handsPos.x * part.size.x;
+    //let oy = oLeftUp.y + handsPos.y * part.size.y;
 
     // let px = from.pos.x;
     // let py = from.pos.y;
     // let ox = ;
     // let oy = ;
-    card.setPos(x,y);
-    card.setFromPos(x,y);
+    card.setPos(px,py);
+    card.setFromPos(px,py);
   }
 }
 
