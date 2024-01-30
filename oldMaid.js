@@ -1,6 +1,7 @@
 let isOldMaid = false;
 let cardManager;
 let cardImg = [];//カードの画像を格納する配列
+let tranpImg = [];
 let isRound = true;
 let randoms = new Array();//シャッフルされたカードを格納する配列
 let Cardmin = 0;
@@ -78,7 +79,8 @@ function oldMaidInit(){
              loadImage('img/spade5.png'),
              loadImage('img/clover1.png'),loadImage('img/clover2.png'),
              loadImage('img/clover3.png'),loadImage('img/clover4.png'),
-             loadImage('img/clover5.png')]
+             loadImage('img/clover5.png')];
+  tranpImg = [loadImage('img/tranp.png')];
 }
 
 //ババ抜きstart
@@ -93,7 +95,7 @@ function oldMaidUpdate(){
   let manager = cardManager;
   let card = manager.card;
   let from = card.from;
-  let target = card.target;
+  let part = card.target;
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
@@ -136,17 +138,21 @@ function oldMaidUpdate(){
     }
     card.update();
 
-    let leftUp = from.leftUpPos;
+    let pLeftUp = from.leftUpPos;
+    let oLeftUp = part.leftUpPos;
 
-    let x = leftUp.x + handsPos.x * from.size.x;
-    let y = leftUp.y + handsPos.y * from.size.y;
+    let px = pLeftUp.x + handsPos.x * from.size.x;
+    let py = pLeftUp.y + handsPos.y * from.size.y;
 
-    let px = from.pos.x;
-    let py = from.pos.y;
+    let ox = oLeftUp.x + handsPos.x * part.size.x;
+    let oy = oLeftUp.y + handsPos.y * part.size.y;
+
+    // let px = from.pos.x;
+    // let py = from.pos.y;
     // let ox = ;
     // let oy = ;
-    card.setPos(px,py);
-    //card.setFromPos(x,y);
+    card.setPos(x,y);
+    card.setFromPos(x,y);
   }
 }
 
@@ -406,7 +412,8 @@ class Card extends Obj{
       push();
       translate(this.pos.x+((num - 2 / player.length) * 20), this.pos.y);
       rotate(this.rotation);
-      image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
+      //image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
+      image(cardImg[tranpImg], 0, 0, this.size, 2 * this.size);
       pop();
     }
     //相手のカード
@@ -414,18 +421,19 @@ class Card extends Obj{
       push();
       translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
       rotate(others[0].rotation);
-      image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+      //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+      image(cardImg[tranpImg], 0, 0, this.size, 2 * this.size);
       pop();
     }
-    for(OLength = 0; OLength < cardManager.member.length; OLength++){
-      for(num = 0; num < opponent.length; num++){
-        push();
-        translate(others[OLength].pos.x+((num - 2 / opponent.length) * 20), others[OLength].pos.y);
-        rotate(others[OLength].rotation);
-        image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-        pop();
-      }
-    }
+    // for(OLength = 0; OLength < cardManager.member.length; OLength++){
+    //   for(num = 0; num < opponent.length; num++){
+    //     push();
+    //     translate(others[OLength].pos.x+((num - 2 / opponent.length) * 20), others[OLength].pos.y);
+    //     rotate(others[OLength].rotation);
+    //     image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+    //     pop();
+    //   }
+    // }
   }
   setTarget(target) {
     this.amt = 0;
