@@ -132,6 +132,7 @@ function oldMaidUpdate(){
         line(lineP.start.x, lineP.start.y, lineP.end.x, lineP.end.y);
       }
       pop();
+      return;
     }
     card.update();
 
