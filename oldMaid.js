@@ -413,7 +413,7 @@ class Card extends Obj{
       translate(this.pos.x+((num - 2 / player.length) * 20), this.pos.y);
       rotate(this.rotation);
       //image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
-      image(cardImg[tranpImg], 0, 0, this.size, 2 * this.size);
+      image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
     //相手のカード
@@ -422,7 +422,7 @@ class Card extends Obj{
       translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
       rotate(others[0].rotation);
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-      image(cardImg[tranpImg], 0, 0, this.size, 2 * this.size);
+      image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
     // for(OLength = 0; OLength < cardManager.member.length; OLength++){
