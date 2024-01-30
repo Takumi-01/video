@@ -135,12 +135,17 @@ function oldMaidUpdate(){
     }
     card.update();
 
+    let LeftUp = from.leftUpPos;
+
+    let x = leftUp.x + handsPos.x * from.size.x;
+    let y = leftUp.y + handsPos.y * from.size.y;
+
     let px = from.pos.x;
     let py = from.pos.y;
     // let ox = ;
     // let oy = ;
-    card.setPos(px,py);
-    //card.setFromPos(ox,oy);
+    card.setPos(x,y);
+    card.setFromPos(x,y);
   }
 }
 
