@@ -487,7 +487,7 @@ function handCardDisplay(){
   for(num = 0; num < player.length; num++){
     push();
     translate(localVideo.x/3+((num - 2 / player.length) * 40), localVideo.y/3);
-    rotate(this.rotation);
+    rotate(0);
     image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
     pop();
   }
