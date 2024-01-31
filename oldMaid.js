@@ -402,7 +402,7 @@ class Card extends Obj{
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(this.pos.x+((num - 2 / player.length) * 40), this.pos.y);
+      translate(this.pos.x+((num - 2 / player.length) * 40), 0);
       rotate(this.rotation);
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
