@@ -9,10 +9,6 @@ let Cardmax = 9;
 let player = new Array();//自分のカードの枚数を管理する配列
 let opponent = new Array();//相手のカードの枚数を管理する配列
 let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
-let manager = cardManager;
-let card = manager.card;
-let from = card.from;
-let part = card.target;
 
 const cardSize = 40;
 const CARD = 'CARD';
@@ -89,10 +85,11 @@ function oldMaidInit(){
 
 //ババ抜きstart
 function oldMaidStart(){
+  let card = cardManager.card;
   isOldMaid = true;
   intShuffle(shuffleNum);
   cardManager.start();
-
+  card.hands();
 }
 
 //ババ抜きupdate
