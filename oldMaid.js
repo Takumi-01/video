@@ -98,7 +98,7 @@ function oldMaidUpdate(){
   let from = card.from;
   let part = card.target;
   
-  card.hands();
+  card.handCard();
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
@@ -399,11 +399,11 @@ class Card extends Obj{
     this.CleftUpPos;
 
   }
-  hands(){
+  handCard(){
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(localVideo.x+((num - 2 / player.length) * 40), 0);
+      translate(localVideo.x+((num - 2 / player.length) * 40), );
       rotate(this.rotation);
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
