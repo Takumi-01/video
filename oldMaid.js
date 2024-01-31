@@ -396,6 +396,16 @@ class Card extends Obj{
     this.CleftUpPos;
 
   }
+  hands(){
+    let num;
+    for(num = 0; num < player.length; num++){
+      push();
+      translate(this.pos.x+((num - 2 / player.length) * 20), this.pos.y);
+      rotate(this.rotation);
+      image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
+      pop();
+    }
+  }
   update(){
     //カードを取られる相手を強調表示
     if (this.target){
@@ -405,7 +415,7 @@ class Card extends Obj{
       rect(this.target.pos.x, this.target.pos.y, this.target.size.x, this.target.size.y);
     }
     //カード表示
-    let num;
+    
     let OLength;
     //自分のカード
     for(num = 0; num < player.length; num++){
