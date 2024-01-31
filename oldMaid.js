@@ -482,7 +482,7 @@ class Card extends Obj{
   }
 }
 
-function handCard(){
+function handCardDisplay(){
   let num;
   for(num = 0; num < player.length; num++){
     push();
