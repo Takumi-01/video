@@ -85,11 +85,10 @@ function oldMaidInit(){
 
 //ババ抜きstart
 function oldMaidStart(){
-  let card = cardManager.card;
   isOldMaid = true;
   intShuffle(shuffleNum);
   cardManager.start();
-  card.hands();
+  
 }
 
 //ババ抜きupdate
@@ -98,6 +97,8 @@ function oldMaidUpdate(){
   let card = manager.card;
   let from = card.from;
   let part = card.target;
+  
+  card.hands();
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
