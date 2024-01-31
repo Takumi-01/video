@@ -418,7 +418,7 @@ class Card extends Obj{
       rect(this.target.pos.x, this.target.pos.y, this.target.size.x, this.target.size.y);
     }
     //カード表示
-    
+    let num;
     let OLength;
     //自分のカード
     for(num = 0; num < player.length; num++){
