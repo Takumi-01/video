@@ -432,7 +432,8 @@ class Card extends Obj{
     //相手のカード
     for(num = 0; num < opponent.length; num++){
       push();
-      translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
+      //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
+      translate(0 + ((num - 2 / opponent.length) * 20), 0);
       rotate(others[0].rotation);
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
