@@ -305,7 +305,7 @@ function receiveOldStatus(oldMaidMode){
         isOldMaid = true;
         cardManager.isUserHost = false;
         let from = getVideoInst(oldMaidMode.from);
-        //cardManager.createCard(from);
+        cardManager.createCard(from);
         cardManager.setTarget(target);
       }
   }
