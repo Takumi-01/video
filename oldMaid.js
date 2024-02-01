@@ -105,7 +105,33 @@ function oldMaidUpdate(){
   noFill();
   rect(from.pos.x, from.pos.y, from.size.x, from.size.y);
 
-  trackingMode();
+  switch (manager.oldMaidMode) {
+    case CARD_TRACKING:
+      trackingMode();
+      break;
+    // case BALLMODE_THROWING:
+    //   ball.update();
+    //   ball.Rotate();
+    //   ball.setPosVec(ballMovePos(ball.fromPos, ball.targetPos, ball.amt, ball.from, ball.target));
+    //   ball.amt += deltaTime / 2;//2秒で到達（1秒は早いし3秒は長い）
+    //   if (ball.amt >= 1) {
+    //     ball.amt = 1;
+    //     if (manager.flyingMode === flyingTypes[1] && isManualCatch) { //放物線で飛んできて、手動キャッチの時はモードごと変える
+    //       manager.setMode(BALLMODE_CATCHING);//落ちる場所はわかってるから各自でモード移行してOK
+    //     } else if (ball.target.ID === localVideo.ID) {//キャッチした判定
+    //       ballArrived();
+    //     }
+    //   }
+    //   break;
+    case CARD_WAIT:
+      card.setPos(card.pos.x, card.pos.y);
+      card.Rotate();
+      cardManager.catching();
+      card.update();
+      break;
+  }
+
+  //trackingMode();
 
   function trackingMode() {
     let minMaxes = from.minMaxes;
