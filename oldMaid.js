@@ -457,7 +457,7 @@ class Card extends Obj{
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
-    相手のカード
+    //相手のカード
     for(num = 0; num < opponent.length; num++){
       push();
       //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
