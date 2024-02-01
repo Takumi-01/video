@@ -169,13 +169,13 @@ function oldMaidUpdate(){
     card.update();
 
     let pLeftUp = from.leftUpPos;
-    //let oLeftUp = part.leftUpPos;
+    let oLeftUp = part.leftUpPos;
 
     let px = pLeftUp.x + handsPos.x * from.size.x;
     let py = pLeftUp.y + handsPos.y * from.size.y;
 
-    //let ox = oLeftUp.x + handsPos.x * part.size.x;
-    //let oy = oLeftUp.y + handsPos.y * part.size.y;
+    let ox = oLeftUp.x + handsPos.x * part.size.x;
+    let oy = oLeftUp.y + handsPos.y * part.size.y;
 
     // let px = from.pos.x;
     // let py = from.pos.y;
@@ -417,6 +417,7 @@ class CardManager {
 class Card extends Obj{
   constructor(pos, from, cardTypeIndex){
     super(pos, cardSize);
+    this.Opos;
     this.target;//相手
     this.from = from;
     this.cardTypeIndex = cardTypeIndex;
@@ -456,16 +457,16 @@ class Card extends Obj{
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
-    //相手のカード
-    // for(num = 0; num < opponent.length; num++){
-    //   push();
-    //   //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-    //   translate(others[0].pos.x + ((num - 2 / opponent.length) * 20), others[0].pos.y * 2);
-    //   rotate(others[0].rotation);
-    //   //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-    //   image(tranpImg[0], 0, 0, this.size, 2 * this.size);
-    //   pop();
-    // }
+    相手のカード
+    for(num = 0; num < opponent.length; num++){
+      push();
+      //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
+      translate(this.Opos.x + ((num - 2 / opponent.length) * 20), this.Opos.y * 2);
+      rotate(this.rotation);
+      //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+      image(tranpImg[0], 0, 0, this.size, 2 * this.size);
+      pop();
+    }
     // for(OLength = 0; OLength < cardManager.member.length; OLength++){
     //   for(num = 0; num < opponent.length; num++){
     //     push();
@@ -490,10 +491,12 @@ class Card extends Obj{
   setPosVec(vec) {
     this.setPos(vec.x, vec.y);
   }
-  setPos(x, y) {
+  setPos(x1, y1, x2, y2) {
     this.prevPos = this.pos.copy();
-    this.pos.x = x;
-    this.pos.y = y;
+    this.pos.x = x1;
+    this.pos.y = y1;
+    this.Opos.x = x2;
+    this.Opos.y = y2;
   }
   setFromPos(x, y) {
     this.fromPos.x = x;
