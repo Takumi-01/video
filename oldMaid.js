@@ -81,6 +81,7 @@ function oldMaidInit(){
              loadImage('img/clover3.png'),loadImage('img/clover4.png'),
              loadImage('img/clover5.png')];
   tranpImg = [loadImage('img/tranp.png')];
+  intShuffle(shuffleNum);
 }
 
 //ババ抜きstart
