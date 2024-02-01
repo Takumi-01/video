@@ -461,7 +461,7 @@ class Card extends Obj{
     for(num = 0; num < opponent.length; num++){
       push();
       //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-      translate(this.Opos.x + ((num - 2 / opponent.length) * 20), this.Opos.y * 2);
+      translate(others[0].x + ((num - 2 / opponent.length) * 20), others[0].y * 2);
       rotate(this.rotation);
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
@@ -495,8 +495,8 @@ class Card extends Obj{
     this.prevPos = this.pos.copy();
     this.pos.x = x1;
     this.pos.y = y1;
-    this.Opos.x = x2;
-    this.Opos.y = y2;
+    others[0].x = x2;
+    others[0].y = y2;
   }
   setFromPos(x, y) {
     this.fromPos.x = x;
