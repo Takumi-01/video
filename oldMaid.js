@@ -99,7 +99,7 @@ function oldMaidUpdate(){
   let from = card.from;
   let part = card.target;
   
-  card.handCard();
+  //card.handCard();
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
@@ -457,15 +457,15 @@ class Card extends Obj{
       pop();
     }
     //相手のカード
-    for(num = 0; num < opponent.length; num++){
-      push();
-      //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-      translate(others[0].pos.x + ((num - 2 / opponent.length) * 20), others[0].pos.y * 2);
-      rotate(others[0].rotation);
-      //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-      image(tranpImg[0], 0, 0, this.size, 2 * this.size);
-      pop();
-    }
+    // for(num = 0; num < opponent.length; num++){
+    //   push();
+    //   //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
+    //   translate(others[0].pos.x + ((num - 2 / opponent.length) * 20), others[0].pos.y * 2);
+    //   rotate(others[0].rotation);
+    //   //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+    //   image(tranpImg[0], 0, 0, this.size, 2 * this.size);
+    //   pop();
+    // }
     // for(OLength = 0; OLength < cardManager.member.length; OLength++){
     //   for(num = 0; num < opponent.length; num++){
     //     push();
