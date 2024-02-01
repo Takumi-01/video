@@ -182,8 +182,8 @@ function oldMaidUpdate(){
     let px = pLeftUp.x + handsPos.x * from.size.x;
     let py = pLeftUp.y + handsPos.y * from.size.y;
 
-    let ox = oLeftUp.x + handsPos.x * part.size.x;
-    let oy = oLeftUp.y + handsPos.y * part.size.y;
+    let ox = oLeftUp.x + OhandsPos.x * part.size.x;
+    let oy = oLeftUp.y + OhandsPos.y * part.size.y;
 
     // let px = from.pos.x;
     // let py = from.pos.y;
