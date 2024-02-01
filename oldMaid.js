@@ -136,10 +136,18 @@ function oldMaidUpdate(){
 
   function trackingMode() {
     let minMaxes = from.minMaxes;
+    let OminMaxes = part.minMaxes;
     let handsPos = undefined;
+    let OhandsPos = undefined;
     for (let i = 0; i < 2; i++) {
       if (minMaxes[i]) {
         handsPos = new Vec((minMaxes[i].maxX + minMaxes[i].minX) / 2, (minMaxes[i].maxY + minMaxes[i].minY) / 2);
+        break;
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      if (OminMaxes[i]) {
+        OhandsPos = new Vec((OminMaxes[i].maxX + OminMaxes[i].minX) / 2, (OminMaxes[i].maxY + OminMaxes[i].minY) / 2);
         break;
       }
     }
