@@ -105,7 +105,7 @@ function oldMaidUpdate(){
   noFill();
   rect(from.pos.x, from.pos.y, from.size.x, from.size.y);
 
-  switch (manager.oldMaidMode) {
+  switch (manager.cardMode) {
     case CARD_TRACKING:
       trackingMode();
       break;
