@@ -337,7 +337,7 @@ class CardManager {
       //配列の早いコピーらしい
       //https://qiita.com/takahiro_itazuri/items/882d019f1d8215d1cb67#comment-1b338078985aea9f600a
       this.member = [...others];
-      //this.setTarget(this.getNext());
+      this.setTarget(this.getNext());
       break;
     case cardUserTypes[1]:
       let fAndT = this.card.getFromTargetID();
