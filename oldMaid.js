@@ -440,7 +440,7 @@ class Card extends Obj{
     for(num = 0; num < player.length; num++){
       push();
       translate(width / 2 + (( -40 * (num - player.length / 2)) / 2), height / 3);
-      rotate(15 * (num - player.length / 2));
+      rotate(this.rotation + 15 * (num - player.length / 2));
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
     }
@@ -460,7 +460,7 @@ class Card extends Obj{
     for(num = 0; num < player.length; num++){
       push();
       translate(this.pos.x+(( -20 * (num - player.length / 2)) / 2 ), this.pos.y);
-      rotate(-15 * (num - player.length / 2));
+      rotate(-15);
       //image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
