@@ -439,7 +439,7 @@ class Card extends Obj{
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(100 + ((num - 2 / player.length) * 40), 100);
+      translate(document.getElementById('autoWidth').clientWidth + ((num - 2 / player.length) * 40), windowHeight - document.getElementById('autoWidth').clientHeight);
       rotate(this.rotation);
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
