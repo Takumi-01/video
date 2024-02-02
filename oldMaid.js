@@ -439,7 +439,7 @@ class Card extends Obj{
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(width / 2 + (( -40 * (player.length - 1))), height / 3);
+      translate(width / 2 + (( -40 * (player.length - 1)) / 2), height / 3);
       rotate(this.rotation);
       image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       pop();
@@ -459,7 +459,7 @@ class Card extends Obj{
     //自分のカード
     for(num = 0; num < player.length; num++){
       push();
-      translate(this.pos.x+(( -20 * (player.length - 1))), this.pos.y);
+      translate(this.pos.x+(( -20 * (player.length - 1)) / 2 ), this.pos.y);
       rotate(this.rotation);
       //image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
@@ -469,7 +469,7 @@ class Card extends Obj{
     for(num = 0; num < opponent.length; num++){
       push();
       //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-      translate(others[0].x + (( -20 * (opponent.length - 1))), others[0].y);
+      translate(others[0].x + (( -20 * (opponent.length - 1)) / 2 ), others[0].y);
       rotate(this.rotation);
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
