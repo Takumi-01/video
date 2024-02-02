@@ -99,7 +99,7 @@ function oldMaidUpdate(){
   let from = card.from;
   let part = card.target;
   
-  //card.handCard();
+  card.handCard();
   //順番者の協調
   stroke(255, 255, 0, 255);
   strokeWeight(2);
