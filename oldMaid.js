@@ -462,7 +462,8 @@ class Card extends Obj{
       push();
       translate(this.pos.x+(( -40 * (num - player.length / 2)) / 2 ), this.pos.y);
       //translate(this.pos.x + (60 * (num / 2) * ((num % 2 ) * ( -1 ))), this.pos.y);
-      rotate(radians(- 60 / (num - (player.length - 1)/2)));
+      //rotate(radians(- 60 / (num - (player.length - 1)/2)));
+      rotate(radians(0));
       //image(cardImg[player[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
@@ -472,7 +473,8 @@ class Card extends Obj{
       push();
       //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
       translate(others[0].x + (( -40 * (num - opponent.length / 2)) / 2 ), others[0].y);
-      rotate(radians(- 60 / (num - (opponent.length - 1)/2)));
+      //rotate(radians(- 60 / (num - (opponent.length - 1)/2)));
+      rotate(radians(0));
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
