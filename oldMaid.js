@@ -483,7 +483,7 @@ class Card extends Obj{
     for(num = 0; num < opponent[0].length; num++){
       push();
       //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-      translate(others[0].pos.x + (( -40 * (num - opponent[0].length / 2)) / 2 ), others[0].pos.y);
+      translate(others[0].x + (( -40 * (num - opponent[0].length / 2)) / 2 ), others[0].y);
       //rotate(radians(- 60 / (num - (opponent.length - 1)/2)));
       rotate(radians(0));
       //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
