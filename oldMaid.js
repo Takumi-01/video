@@ -493,7 +493,7 @@ class Card extends Obj{
     for(OLength = 0; OLength < opponent.length ; OLength++){
       for(num = 0; num < opponent[OLength].length; num++){
         push();
-        translate(others[OLength].x+((num - 2 / opponent[OLength].length) * 20), others[OLength].y);
+        translate(others[OLength].pos.x+((num - 2 / opponent[OLength].length) * 20), others[OLength].pos.y);
         rotate(radians(0));
         //rotate(others[OLength].rotation);
         image(tranpImg[0], 0, 0, this.size, 2 * this.size);
