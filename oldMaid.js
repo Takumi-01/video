@@ -439,10 +439,10 @@ class Card extends Obj{
     let num;
     for(num = 0; num < player.length; num++){
       push();
-      translate(this.from.pos.x + (( -80 * (num - player.length / 2)) / 2), this.from.pos.y + 2 * this.from.size.y  / 3);
+      translate(width / 2 + (( -160 * (num - player.length / 2)) / 2), 9 * height / 10);
       //translate(widht/2 + (60 * (num / 2) * ((num % 2 ) * ( -1 ))), height/2);
       rotate(radians(0));
-      image(cardImg[player[num]], 0, 0, this.size, this.size);
+      image(cardImg[player[num]], 0, 0, 2 * this.size, 2 * this.size);
       pop();
     }
   }
