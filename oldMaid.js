@@ -51,7 +51,7 @@ function intShuffle(num){
         opponentCard.push(randoms[i+j+1]);
       }
       opponent.push(opponentCard);
-      opponentCard = 0;
+      opponentCard = [];
     }
   //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
