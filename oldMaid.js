@@ -8,7 +8,7 @@ let Cardmin = 0;
 let Cardmax = 14;
 let player = new Array();//自分のカードの枚数を管理する配列
 let opponent = new Array();//相手のカードの枚数を管理する配列
-
+let opponentCard = new Array();//相手のカードの枚数を管理する配列
 let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
 
 const cardSize = 40;
@@ -40,7 +40,6 @@ function arrayShuffle(array) {
 }
 
 function intShuffle(num){
-  let Cnum = 0;
   //一番最初にカードを配る処理
   if(num == 0){
     for(i = 0; i <= Cardmax; i += 3){
@@ -49,10 +48,9 @@ function intShuffle(num){
     }
     for(j = 0; j <= 1; j++){
       for(i = 0; i <= Cardmax; i += 3){
-        opponent[j][Cnum] = randoms[i+j+1];
-        Cnum += 1;
+        opponentCard = randoms[i+j+1];
       }
-      Cnum = 0;
+      opponent.push();
     }
   //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
