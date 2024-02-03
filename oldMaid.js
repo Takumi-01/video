@@ -51,6 +51,7 @@ function intShuffle(num){
         opponentCard.push(randoms[i+j+1]);
       }
       opponent.push(opponentCard);
+      opponentCard = 0;
     }
   //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
@@ -489,7 +490,7 @@ class Card extends Obj{
     //   image(tranpImg[0], 0, 0, this.size, 2 * this.size);
     //   pop();
     // }
-    for(OLength = 0; OLength < cardManager.member.length; OLength++){
+    for(OLength = 0; OLength < opponent.length ; OLength++){
       for(num = 0; num < opponent[OLength].length; num++){
         push();
         translate(others[OLength].x+((num - 2 / opponent[OLength].length) * 20), others[OLength].y);
