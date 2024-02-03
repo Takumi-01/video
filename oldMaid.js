@@ -479,27 +479,28 @@ class Card extends Obj{
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
-    //相手のカード
-    // for(num = 0; num < opponent.length; num++){
-    //   push();
-    //   //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
-    //   translate(others[0].x + (( -40 * (num - opponent.length / 2)) / 2 ), others[0].y);
-    //   //rotate(radians(- 60 / (num - (opponent.length - 1)/2)));
-    //   rotate(radians(0));
-    //   //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-    //   image(tranpImg[0], 0, 0, this.size, 2 * this.size);
-    //   pop();
-    // }
-    for(OLength = 0; OLength < opponent.length ; OLength++){
-      for(num = 0; num < opponent[OLength].length; num++){
-        push();
-        translate(others[OLength].pos.x+((num - 2 / opponent[OLength].length) * 20), others[OLength].pos.y);
-        rotate(radians(0));
-        //rotate(others[OLength].rotation);
-        image(tranpImg[0], 0, 0, this.size, 2 * this.size);
-        pop();
-      }
+    相手のカード
+    for(num = 0; num < opponent[0].length; num++){
+      push();
+      //translate(others[0].pos.x+((num - 2 / opponent.length) * 20), others[0].pos.y);
+      translate(others[0].pos.x + (( -40 * (num - opponent[0].length / 2)) / 2 ), others[0].pos.y);
+      //rotate(radians(- 60 / (num - (opponent.length - 1)/2)));
+      rotate(radians(0));
+      //image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
+      image(tranpImg[0], 0, 0, this.size, 2 * this.size);
+      pop();
     }
+    //複数人用
+    // for(OLength = 0; OLength < opponent.length ; OLength++){
+    //   for(num = 0; num < opponent[OLength].length; num++){
+    //     push();
+    //     translate(others[OLength].pos.x+((num - 2 / opponent[OLength].length) * 20), others[OLength].pos.y);
+    //     rotate(radians(0));
+    //     //rotate(others[OLength].rotation);
+    //     image(tranpImg[0], 0, 0, this.size, 2 * this.size);
+    //     pop();
+    //   }
+    // }
   }
   setTarget(target) {
     this.amt = 0;
