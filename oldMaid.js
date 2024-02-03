@@ -5,9 +5,10 @@ let tranpImg = [];
 let isRound = true;
 let randoms = new Array();//シャッフルされたカードを格納する配列
 let Cardmin = 0;
-let Cardmax = 9;
+let Cardmax = 14;
 let player = new Array();//自分のカードの枚数を管理する配列
 let opponent = new Array();//相手のカードの枚数を管理する配列
+
 let shuffleNum;//自分のカードをシャッフルした回数を管理するやつ
 
 const cardSize = 40;
@@ -41,9 +42,14 @@ function arrayShuffle(array) {
 function intShuffle(num){
   //一番最初にカードを配る処理
   if(num == 0){
-    for(i = 0; i <= Cardmax; i += 2){
+    for(i = 0; i <= Cardmax; i += 3){
       player.push(randoms[i]);
-      opponent.push(randoms[i+1]);
+      //opponent.push(randoms[i+1]);
+    }
+    for(j = 0; j <= 1; j++){
+      for(i = 0; i <= Cardmax; i += 3){
+        opponent[j].push(randoms[i+j+1]);
+      }
     }
   //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
@@ -79,7 +85,10 @@ function oldMaidInit(){
              loadImage('img/spade5.png'),
              loadImage('img/clover1.png'),loadImage('img/clover2.png'),
              loadImage('img/clover3.png'),loadImage('img/clover4.png'),
-             loadImage('img/clover5.png')];
+             loadImage('img/clover5.png'),
+             loadImage('img/heart1.png'),loadImage('img/heart2.png'),
+             loadImage('img/heart3.png'),loadImage('img/heart4.png'),
+             loadImage('img/heart5.png')];
   tranpImg = [loadImage('img/tranp.png')];
   intShuffle(shuffleNum);
 }
@@ -479,15 +488,16 @@ class Card extends Obj{
       image(tranpImg[0], 0, 0, this.size, 2 * this.size);
       pop();
     }
-    // for(OLength = 0; OLength < cardManager.member.length; OLength++){
-    //   for(num = 0; num < opponent.length; num++){
-    //     push();
-    //     translate(others[OLength].pos.x+((num - 2 / opponent.length) * 20), others[OLength].pos.y);
-    //     rotate(others[OLength].rotation);
-    //     image(cardImg[opponent[num]], 0, 0, this.size, 2 * this.size);
-    //     pop();
-    //   }
-    // }
+    for(OLength = 0; OLength < cardManager.member.length; OLength++){
+      for(num = 0; num < opponent.length; num++){
+        push();
+        translate(others[OLength].x+((num - 2 / opponent.length) * 20), others[OLength].y);
+        rotate(radians(0));
+        //rotate(others[OLength].rotation);
+        image(tranpImg[0], 0, 0, this.size, 2 * this.size);
+        pop();
+      }
+    }
   }
   setTarget(target) {
     this.amt = 0;
