@@ -40,6 +40,7 @@ function arrayShuffle(array) {
 }
 
 function intShuffle(num){
+  let Cnum = 0;
   //一番最初にカードを配る処理
   if(num == 0){
     for(i = 0; i <= Cardmax; i += 3){
@@ -48,8 +49,10 @@ function intShuffle(num){
     }
     for(j = 0; j <= 1; j++){
       for(i = 0; i <= Cardmax; i += 3){
-        opponent[j].push(randoms[i+j+1]);
+        opponent[j][Cnum] = randoms[i+j+1];
+        Cnum += 1;
       }
+      Cnum = 0;
     }
   //二回目以降はカードの位置をランダムにする
   }else if(num > 0){
